@@ -74,8 +74,7 @@
                     </div>
                     <div class="header_top_right">
                         <p>
-                            <a href="#" class="btn-link">Register</a>
-                            <a href="#" data-target="#myModal" data-toggle="modal" class="btn-link">Login</a>
+
                         </p>
 
                     </div>
@@ -85,15 +84,15 @@
         </div>
     </header>
     <section id="navArea">
-        <nav class="navbar navbar-inverse" role="navigation">
+        <nav class="navbar navbar-inverse" role="navigation" >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
             </div>
-            <div id="navbar" class="navbar-collapse collapse col-lg-10 col-md-10 col-sm-10">
-                <ul class="nav navbar-nav main_nav">
-                    <li class="active"><a href="index.html"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-                    <li><a href="#">Technology</a></li>
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobile</a>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+                    <li><a href="#"></a></li>
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">เกี่ยวกับเรา</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Android</a></li>
                             <li><a href="#">Samsung</a></li>
@@ -102,10 +101,24 @@
                             <li><a href="#">Sympony</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Tablets</a></li>
-                    <li><a href="pages/contact.html">Contact Us</a></li>
-                    <li><a href="pages/404.html">404 Page</a></li>
+
+                    <li><a href="pages/contact.html">ติดต่อ</a></li>
+                    <li>
+                            <form class="navbar-form navbar-left">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> สมัครสมาชิก</a></li>
+                    <li><a href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบ</a></li>
                 </ul>
             </div>
         </nav>
@@ -113,7 +126,7 @@
     <section id="newsSection">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="latest_newsarea"> <span>Comment</span>
+                <div class="latest_newsarea"> <span><strong>รายวิชาเเลือกเฉพาะ</strong></span>
                     <ul id="ticker01" class="news_sticker">
 
                     </ul>
@@ -134,7 +147,7 @@
         </div>
     </section>
     <section id="sliderSection">
-        <div class="row">
+        <div class="row" id="test-list">
             <div class="col-lg-8 col-md-8 col-sm-8">
                 <?php
                     for ($i=0;$i<count($resultArray);$i++) {
@@ -152,10 +165,25 @@
                         <?php
                     }
                 ?>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="latest_post">
-                    <h2><span>Latest post</span></h2>
+                    <h2><span>ความคิดเห็นล่าสุด</span></h2>
                     <div class="latest_post_container">
                         <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
                         <ul class="latest_postnav">
@@ -199,7 +227,7 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
-                <aside class="right_content">
+               <!-- <aside class="right_content">
                     <div class="single_sidebar">
                         <h2><span>Popular Post</span></h2>
                         <ul class="spost_nav">
@@ -274,7 +302,7 @@
                             </div>
                         </div>
                     </div>
-                </aside>
+                </aside>-->
             </div>
         </div>
     </section>
