@@ -141,7 +141,7 @@
                     else{
                         ?>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> สมัครสมาชิก</a></li>
+                                <li><a href="#" data-target="#myModalRegistor" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> สมัครสมาชิก</a></li>
                                 <li><a href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบ</a></li>
                             </ul>
                         <?php
@@ -153,7 +153,7 @@
     <section id="newsSection">
         <div class="row">
             <div class="col-lg-12 col-md-12">
-                <div class="latest_newsarea"> <span><strong>รายวิชาเเลือกเฉพาะ</strong></span>
+                <div class="latest_newsarea"> <span><strong>รายวิชาเลือกเฉพาะ</strong></span>
                     <ul id="ticker01" class="news_sticker">
 
                     </ul>

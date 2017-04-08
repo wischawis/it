@@ -14,11 +14,10 @@ if(isset($_SESSION['user'])){
     $userlogin = $_SESSION['user'];
 }
 
-
-    include ("../model/getData.php");
-    $idsub = $_GET["idsub"];
-    $resultArray = getOneSubject($idsub);
-    $resultArray2 = getComment($idsub);
-    include ("../view/comment.php");
+include ("../model/getData.php");
+$idsub = $_GET["idsub"];
+$resultArray = getOneSubject($idsub);
+$resultArray2 = getComment($idsub);
+include ("../view/comment.php");
 
 ?>

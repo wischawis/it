@@ -26,12 +26,12 @@ if(isset($_POST['login'])){
     if (is_a($mem, "Member")) {
         if($mem->getTypeUser() == "ADMIN"){
             $_SESSION["user"] = $mem;
-            include ("../view/admin_page.php");
+            include ("../view/user_page.php");
             exit();
         }
         else{
             $_SESSION["user"] = $mem;
-            header("Location:../view/admin_page.php");
+            include ("../view/user_page.php");
             exit();
         }
     }
@@ -53,11 +53,11 @@ if(isset($_GET["logout"])){
 }
 if(isset($_SESSION["user"])){
     if($_SESSION["user"]->getTypeUser() == "ADMIN"){
-        include ("../view/admin_page.php");
+        include ("../view/user_page.php");
         exit();
     }
     else{
-        header("Location:../index.php");
+        include ("../view/user_page.php");
         exit();
     }
 }

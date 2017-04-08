@@ -5,7 +5,10 @@
  * Date: 7/4/2560
  * Time: 23:41
  */
+
+include ("../model/getData.php");
 ?>
+
 <?php
     include ("header.php");
 ?>

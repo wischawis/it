@@ -88,5 +88,79 @@ $lastCom = getLastComment();
 </footer>
 </div>
 
+
+<!-- Modal Login-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <form action="controller/home.php" method="post">
+                    <input type="text" id="user" class="form-control" name="user" placeholder="ชื่อผู้ใช้"/>
+                    <br/>
+                    <br/>
+                    <input type="password" id="pass" class="form-control" name="pass" placeholder="รหัสผ่าน"/>
+                    <br/>
+                    <br/>
+                    <input type="submit" class="btn btn-info" name="login" id="login" value="Login"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Registor-->
+<div class="modal fade" id="myModalRegistor" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Register</h4>
+            </div>
+            <div class="modal-body" align="center">
+                <form id ="register" method="post" name="register" action="">
+                    <table>
+                        <tr>
+                            <td><label for="username" style="color: darkviolet">Username</label></td>
+                            <td><input type="text" class="form-control" name="username" id="username" maxlength="20"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="password" style="color: navy">Password</label></td>
+                            <td><input type="text" class="form-control" name="password" id="password" maxlength="20"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="name" style="color: deepskyblue">Name</label></td>
+                            <td><input type="text" class="form-control" name="name" id="name" maxlength="20"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="surname" style="color: greenyellow">Surname</label></td>
+                            <td><input type="text" class="form-control" name="surname" id="surname" maxlength="20"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="tel" style="color: yellow">Tel. No.</label></td>
+                            <td><input type="text" class="form-control" name="tel" id="tel" maxlength="10"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email" style="color: orange">E-mail</label></td>
+                            <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="20"/><br/></td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <input type="submit" class="btn btn-success" name="regis" id="regis" value="Regis"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

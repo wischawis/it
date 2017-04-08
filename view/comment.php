@@ -1,12 +1,11 @@
+
 <script src="../lib/sweetalert-master/dist/sweetalert.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <link rel="stylesheet" href="../lib/sweetalert-master/dist/sweetalert.css">
 <link rel="stylesheet" type="text/css" href="../css/style_com.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <?php
 include ("header.php");
 ?>
-
-
 
 <script>
 	$(document).ready(function(){
@@ -133,9 +132,11 @@ include ("header.php");
 											<div class="comment-body">
                                             <?php
                                             if(isset($_SESSION["user"])) {
-                                                ?>
-											    <i class="fa fa-times delete" aria-hidden="true"></i>
-                                                <?php
+                                                if($resultArray2[$i]['id_user'] == $_SESSION["user"]->getId() || $_SESSION["user"]->getTypeUser() == "ADMIN") {
+                                                    ?>
+                                                    <i class="fa fa-times delete" aria-hidden="true"></i>
+                                                    <?php
+                                                }
                                             }
                                             ?>
 												<div class="comment-heading">
@@ -166,9 +167,12 @@ include ("header.php");
 														<div class="comment-body">
                                                             <?php
                                                             if(isset($_SESSION["user"])) {
-                                                                ?>
-                                                                <i class="fa fa-times delete" aria-hidden="true"></i>
-                                                                <?php
+                                                                if($resultArray3[$j]['id_user'] == $_SESSION["user"]->getId() || $_SESSION["user"]->getTypeUser() == "ADMIN") {
+                                                                    ?>
+                                                                    <i class="fa fa-times delete"
+                                                                       aria-hidden="true"></i>
+                                                                    <?php
+                                                                }
                                                             }
                                                             ?>
 															<div class="comment-heading">
