@@ -28,7 +28,7 @@ function getOneSubject($idsub){
         $arrCol = array();
         $arrCol = array("id_subject"=>$obResult['id_subject'],
             "name_th"=>$obResult['name_th'],
-            "name_en"=>$obResult['name_en'],
+            "subject_code"=>$obResult['subject_code'],
             "description"=>$obResult['description'],
             "id_member"=>$obResult['id_member'],
             "name"=>$obResult['name'],
@@ -78,5 +78,48 @@ function sub_comment($subject,$com){
         array_push($resultArray2,$arrCol);
     }
     return $resultArray2;
+}
+function getAllUser(){
+    global $conn;
+    $sql = "SELECT * FROM member";
+    $res = $conn->query($sql);
+    $resultArray = array();
+    while($obResult = $res->fetch(PDO::FETCH_ASSOC))
+    {
+        $arrCol = array();
+        $arrCol = array("id_member"=>$obResult['id_member'],
+            "username"=>$obResult['username'],
+            "password"=>$obResult['password'],
+            "name"=>$obResult['name'],
+            "surname"=>$obResult['surname'],
+            "tel"=>$obResult['tel'],
+            "email"=>$obResult['email'],
+            "type_user"=>$obResult['type_user']);
+        array_push($resultArray,$arrCol);
+    }
+    return $resultArray;
+}
+function getLastComment(){
+    global $conn;
+    $sql = "SELECT * FROM member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user ORDER BY date_time DESC LIMIT 5";
+    $res = $conn->query($sql);
+    $resultArray = array();
+    while($obResult = $res->fetch(PDO::FETCH_ASSOC))
+    {
+        $arrCol = array();
+        $arrCol = array("id_comment"=>$obResult['id_comment'],
+            "txt_comment"=>$obResult['txt_comment'],
+            "date_time"=>$obResult['date_time'],
+            "level"=>$obResult['level'],
+            "id_comment_parent"=>$obResult['id_comment_parent'],
+            "id_user"=>$obResult['id_user'],
+            "id_subject"=>$obResult['id_subject'],
+            "name_th"=>$obResult['name_th'],
+            "subject_code"=>$obResult['subject_code'],
+            "name"=>$obResult['name'],
+            "surname"=>$obResult['surname']);
+        array_push($resultArray,$arrCol);
+    }
+    return $resultArray;
 }
 ?>

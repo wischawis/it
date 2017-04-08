@@ -6,7 +6,7 @@
         swal("Here's a message!");
         return false;
     };
-</script>
+    </script>
 <?php
 /**
  * Created by PhpStorm.
@@ -31,7 +31,7 @@ if(isset($_POST['login'])){
         }
         else{
             $_SESSION["user"] = $mem;
-            header("Location:../index.php");
+            header("Location:../view/admin_page.php");
             exit();
         }
     }
@@ -41,7 +41,7 @@ if(isset($_POST['login'])){
         echo "<script>window.location='../index.php'</script>";
     }
 }
-if(isset($_POST["logout"])){
+if(isset($_GET["logout"])){
     Authentication::logout($_SESSION["user"]);
     session_unset();
     session_destroy();
@@ -49,6 +49,20 @@ if(isset($_POST["logout"])){
         setcookie(session_name(),'',time() -3600,"/");
     }
     header("Location: ../index.php");
+    exit();
+}
+if(isset($_SESSION["user"])){
+    if($_SESSION["user"]->getTypeUser() == "ADMIN"){
+        include ("../view/admin_page.php");
+        exit();
+    }
+    else{
+        header("Location:../index.php");
+        exit();
+    }
+}
+else{
+    header("Location:../index.php");
     exit();
 }
 ?>

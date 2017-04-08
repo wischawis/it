@@ -43,6 +43,29 @@
     </style>
     <?php
         include ("config.inc.php");
+        function getLastComment(){
+            global $conn;
+            $sql = "SELECT * FROM member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user ORDER BY date_time DESC LIMIT 5";
+            $res = $conn->query($sql);
+            $resultArray = array();
+            while($obResult = $res->fetch(PDO::FETCH_ASSOC))
+            {
+                $arrCol = array();
+                $arrCol = array("id_comment"=>$obResult['id_comment'],
+                    "txt_comment"=>$obResult['txt_comment'],
+                    "date_time"=>$obResult['date_time'],
+                    "level"=>$obResult['level'],
+                    "id_comment_parent"=>$obResult['id_comment_parent'],
+                    "id_user"=>$obResult['id_user'],
+                    "id_subject"=>$obResult['id_subject'],
+                    "name_th"=>$obResult['name_th'],
+                    "subject_code"=>$obResult['subject_code'],
+                    "name"=>$obResult['name'],
+                    "surname"=>$obResult['surname']);
+                array_push($resultArray,$arrCol);
+            }
+            return $resultArray;
+        }
         $sql = "SELECT * FROM subject";
         $res = $conn->query($sql);
         $resultArray = array();
@@ -55,6 +78,12 @@
                 "description"=>$obResult['description']);
             array_push($resultArray,$arrCol);
         }
+        $userlogin;
+        if(isset($_SESSION['user'])){
+            $userlogin = $_SESSION['user'];
+        }
+
+        $lastCom = getLastComment();
     ?>
 </head>
 <body>
@@ -116,10 +145,50 @@
                             </form>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> สมัครสมาชิก</a></li>
-                    <li><a href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบ</a></li>
-                </ul>
+                <?php
+                if(isset($_SESSION['user'])) {
+                    ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?=$userlogin?></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?=$path?>controller/profile.php">Profile</a></li>
+                                <li><a href="<?=$path?>controller/home.php?logout=1">Log out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <?php
+                    if($userlogin->getTypeUser()=="ADMIN")
+                    {
+                        ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการรายวิชา</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="<?=$path?>controller/edituser.php">แก้ไขรายวิชา</a></li>
+                                    <li><a href="<?=$path?>controller/edituser.php">เพิ่มรายวิชา</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการผู้ใช้</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="<?=$path?>controller/edituser.php">แก้ไขข้อมูลผู้ใช้</a></li>
+                                    <li><a href="<?=$path?>controller/edituser.php">เพิ่มผู้ใช้</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <?php
+                    }
+                }
+                else{
+                    ?>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> สมัครสมาชิก</a></li>
+                        <li><a href="#" data-target="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> เข้าสู่ระบบ</a></li>
+                    </ul>
+                    <?php
+                }
+                ?>
             </div>
         </nav>
     </section>
@@ -187,31 +256,24 @@
                     <div class="latest_post_container">
                         <div id="prev-button"><i class="fa fa-chevron-up"></i></div>
                         <ul class="latest_postnav">
-                            <li>
-                                <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 1</a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 3</a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 4</a> </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media"> <a href="pages/single_page.html" class="media-left"> <img alt="" src="images/post_img1.jpg"> </a>
-                                    <div class="media-body"> <a href="pages/single_page.html" class="catg_title"> Aliquam malesuada diam eget turpis varius 2</a> </div>
-                                </div>
-                            </li>
+                            <?php
+                                for($last=0;$last<count($lastCom);$last++) {
+                                    ?>
+                                    <li>
+                                        <div class="media"><a href="controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="media-left"> <img
+                                                        alt="" src="images/post_img1.jpg"> </a>
+                                            <div class="media-body">
+                                                <a href="controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="catg_title">
+                                                    <?php
+                                                        echo "<b>".$lastCom[$last]['name']." ".$lastCom[$last]['surname']."</b> แสดงความคิดเห็นในวิชา ".$lastCom[$last]['name_th'];
+                                                    ?>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <?php
+                                }
+                            ?>
                         </ul>
                         <div id="next-button"><i class="fa  fa-chevron-down"></i></div>
                     </div>

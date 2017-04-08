@@ -1,31 +1,19 @@
-
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../css/style_com.css">
+<script src="../lib/sweetalert-master/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-<script src="../lib/sweetalert-master/dist/sweetalert-dev.js"></script>
 <link rel="stylesheet" href="../lib/sweetalert-master/dist/sweetalert.css">
+<link rel="stylesheet" type="text/css" href="../css/style_com.css">
 <?php
-include ("../class/Member.class.php");
-include("../model/getData.php");
+include ("header.php");
+?>
 
-session_start();
-if(isset($_SESSION["user"])){
-    $user = $_SESSION["user"];
-    echo $user;
-    echo $user->getTypeUser();
-    $u = $user->getName()." ".$user->getSurname();
-}?>
+
+
 <script>
-
-
 	$(document).ready(function(){
 		$(".call_back").click(function(){
 			var idcomment = $(this).parent().parent().parent().data("idcomment");
 			var idsubject = $(this).parent().parent().parent().data("idsubject");
-            var user = "<?=$u?>";
+            var user = "<?=$userlogin?>";
 			var com = "<form action='../model/insert.php' method='post'><div class='reply'>";
 			com = com + "<ul class='comments-list' data-idsubject = '" + idsubject + "' data-idparent = '" + idcomment+ "'>";
 			com = com + "<li class='comment'>";
@@ -72,38 +60,6 @@ if(isset($_SESSION["user"])){
 	});
 	
 </script>
-<?php
-
-
-if(isset($_GET["idsub"])){
-    $idsub = $_GET["idsub"];
-    $resultArray = getOneSubject($idsub);
-    $resultArray2 = getComment($idsub);
-}
-else{
-    header("Location:../index.php");
-}
-function date_time($d)
-{
-    $now = date('Y-m-d H:i:s');
-    $t=time();
-    echo($t . "<br>");
-    echo(date("Y-m-d",$t));echo "<br/>";
-    echo(date("H:i:s",$t));echo "<br/>";
-    $date1 = date('Y-m-d', $now);
-    $time1 = date('H:i:s', $now);
-    echo $now;echo "<br/>";
-    $timestamp_com = strtotime($d);
-    $date2 = date('Y-m-d', $timestamp_com);
-    $time2 = date('H:i:s', $timestamp_com);
-    echo $date2;echo "<br/>";
-    $date1 = date_create($date1);
-    $date2 = date_create($date2);
-    $diff=date_diff($date1,$date2);
-    echo $diff->format("%R%a days");
-}
-
-?>
 <style>
     p{
 		font-size: 16px;
@@ -133,9 +89,7 @@ function date_time($d)
 		width:100%;
 	}
 </style>
-<a href="../index.php">back</a>
-<div class="container" style="width:60%">
-    <div class="col-sm-8">
+
         <div class="panel panel-white post panel-shadow">
             <div class="post-heading">
                 <div class="pull-left image">
@@ -238,5 +192,6 @@ function date_time($d)
 				?>
             </div>
         </div>
-    </div>
-</div>
+<?php
+include ("footer.php");
+?>
