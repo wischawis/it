@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.fancybox.css">
     <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css_pagination/style.css">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -44,6 +45,7 @@
         label{
             margin-right: 20px;
         }
+
     </style>
     <?php
         include ("config.inc.php");
@@ -220,12 +222,15 @@
         </div>
     </section>
     <section id="sliderSection">
+        <script src="js_pagination/jquery.js"></script>
+        <script src="js_pagination/paginate.js"></script>
+        <script src="js_pagination/custom.js"></script>
         <div class="row" id="test-list">
             <div class="col-lg-8 col-md-8 col-sm-8">
                 <?php
                     for ($i=0;$i<count($resultArray);$i++) {
                         ?>
-                        <div class="subject">
+                        <div class="subject post">
                             <div class="main-subject">
                                 <span><b><?=$resultArray[$i]['code']?></b></span>
                                 <span><b><?=$resultArray[$i]['name_th']?></b></span>
@@ -239,20 +244,12 @@
                     }
                 ?>
 
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                        <ul class="pagination">
+                                <!-- List Page -->
+                        </ul>
+
             </div>
+
 
             <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="latest_post">
