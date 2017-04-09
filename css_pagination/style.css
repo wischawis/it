@@ -1,0 +1,43 @@
+.page
+{
+    width: 960px;
+    margin: 0px auto;
+}
+
+.list-of-posts
+{
+    min-height:700px;  
+}
+
+.pagination li
+{
+    list-style:none;
+    float: left;
+    width : 40px;
+    height: 40px;
+    border: 1px solid white;
+    background-color:black;
+    color:white;
+    text-align:center;
+    cursor:pointer;
+}
+
+.pagination li:hover
+{
+    background-color: #d083cf;
+    border:1px solid black;
+    color: black;
+}
+
+.pagination ul
+{
+    border: 0px;
+    padding: 0px;
+}
+
+.active-class
+{
+	background-color: #d083cf !important;
+    border:2px solid white !important;
+    color: black !important;	
+}
