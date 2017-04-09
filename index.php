@@ -462,7 +462,7 @@
                 <h4 class="modal-title">Register</h4>
             </div>
             <div class="modal-body" align="center">
-                <form id ="register" method="post" name="register">
+                <form id ="register" method="post" name="register" action="model/register.php">
                     <table>
                         <tr>
                             <td><label for="username" style="color: darkviolet">Username</label></td>
@@ -487,6 +487,18 @@
                         <tr>
                             <td><label for="email" style="color: orange">E-mail</label></td>
                             <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="20"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email" style="color: orange">Picture</label></td>
+                            <td><div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="radio" style="float: left" name="img" value="1"/><img src="images/user_1.jpg"/>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="radio" style="float: left" name="img" value="2"/><img src="images/user_2.jpg"/>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="radio" style="float: left" name="img" value="3"/><img src="images/user_3.jpg"/>
+                                </div></td>
                         </tr>
                     </table>
                     <br/>
