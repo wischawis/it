@@ -121,8 +121,8 @@
                             <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการรายวิชา</a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?=$path?>controller/edituser.php">แก้ไขรายวิชา</a></li>
-                                    <li><a href="<?=$path?>controller/edituser.php">เพิ่มรายวิชา</a></li>
+                                    <li><a href="<?=$path?>controller/editSubject.php">แก้ไขรายวิชา</a></li>
+                                    <li><a href="<?=$path?>controller/insertSubject.php">เพิ่มรายวิชา</a></li>
                                 </ul>
                             </li>
                             </ul>
