@@ -1,7 +1,37 @@
 <?php
 
 include ("../config.inc.php");
+// <-------------------------toey--------------------------------->
+function getListSubject()
+{
+    global $conn;
+    $dataSubjects = array();
+    $sql= "SELECT * FROM subject";
+    $res = $conn->query($sql);
+    $i=0;
+    while ($row = $res->fetch(PDO::FETCH_ASSOC))
+    {
+        $dataSubjects[$i] = array($row['subject_code'],$row['name_th'],$row['id_subject'],$row['description']);
+        $i++;
+    }
+    return $dataSubjects;
+}
+function getNameSubject($id)
+{
+    global $conn;
+    $dataSubjects = array();
+    $sql= "SELECT name_th FROM subject WHEN id_subject=".$id;
+    $res = $conn->query($sql);
+    $i=0;
+    while ($row = $res->fetch(PDO::FETCH_ASSOC))
+    {
+        $dataSubjects[$i] = array($row['name_th']);
 
+    }
+    return $dataSubjects;
+}
+
+//<---------------------------------------------------------------->
 function getAllSubject(){
     global $conn;
     $sql = "SELECT * FROM subject";
