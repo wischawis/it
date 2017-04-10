@@ -69,7 +69,7 @@ function getOneSubject($idsub){
 }
 function getComment($subject){
     global $conn;
-    $sql = "SELECT * FROM comment INNER JOIN member ON comment.id_user=member.id_member WHERE id_subject='$subject' and level=0 ORDER BY date_time";
+    $sql = "SELECT * FROM img INNER JOIN (comment INNER JOIN member ON comment.id_user=member.id_member) ON img.id_img=member.id_img WHERE id_subject='$subject' and level=0 ORDER BY date_time";
     $res = $conn->query($sql);
     $resultArray2 = array();
     while($obResult = $res->fetch(PDO::FETCH_ASSOC))
@@ -83,14 +83,15 @@ function getComment($subject){
             "id_user"=>$obResult['id_user'],
             "id_subject"=>$obResult['id_subject'],
             "name"=>$obResult['name'],
-            "surname"=>$obResult['surname']);
+            "surname"=>$obResult['surname'],
+            "path_img"=>$obResult['path_img']);
         array_push($resultArray2,$arrCol);
     }
     return $resultArray2;
 }
 function sub_comment($subject,$com){
     global $conn;
-    $sql = "SELECT * FROM comment INNER JOIN member ON comment.id_user=member.id_member WHERE id_subject='$subject' and level=1 and id_comment_parent='$com' ORDER BY date_time";
+    $sql = "SELECT * FROM img INNER JOIN (comment INNER JOIN member ON comment.id_user=member.id_member) ON img.id_img=member.id_img WHERE id_subject='$subject' and level=1 and id_comment_parent='$com' ORDER BY date_time";
     $res = $conn->query($sql);
     $resultArray2 = array();
     while($obResult = $res->fetch(PDO::FETCH_ASSOC))
@@ -104,7 +105,8 @@ function sub_comment($subject,$com){
             "id_user"=>$obResult['id_user'],
             "id_subject"=>$obResult['id_subject'],
             "name"=>$obResult['name'],
-            "surname"=>$obResult['surname']);
+            "surname"=>$obResult['surname'],
+            "path_img"=>$obResult['path_img']);
         array_push($resultArray2,$arrCol);
     }
     return $resultArray2;

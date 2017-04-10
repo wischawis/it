@@ -9,7 +9,13 @@
 <?php
 include("../class/Authentication.class.php");
 session_start();
-$userlogin = $_SESSION['user'];
-include ("../model/getData.php");
-include ("../view/view_profile.php");
+if(isset($_SESSION['user'])) {
+    $userlogin = $_SESSION['user'];
+    include("../model/getData.php");
+    include("../view/view_profile.php");
+}
+else {
+    header("Location: ../index.php");
+    exit();
+}
 ?>

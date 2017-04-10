@@ -48,7 +48,9 @@
 
     </style>
     <?php
+
         include ("config.inc.php");
+        include ("class/Member.class.php");
         function getLastComment(){
             global $conn;
             $sql = "SELECT * FROM member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user ORDER BY date_time DESC LIMIT 5";
@@ -85,11 +87,13 @@
             array_push($resultArray,$arrCol);
         }
         $userlogin;
+        $lastCom = getLastComment();
+        session_start();
         if(isset($_SESSION['user'])){
             $userlogin = $_SESSION['user'];
         }
 
-        $lastCom = getLastComment();
+
     ?>
 </head>
 <body>
@@ -157,8 +161,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?=$userlogin?></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="<?=$path?>controller/profile.php">Profile</a></li>
-                                <li><a href="<?=$path?>controller/home.php?logout=1">Log out</a></li>
+                                <li><a href="controller/profile.php">Profile</a></li>
+                                <li><a href="controller/home.php?logout=1">Log out</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -169,16 +173,16 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการรายวิชา</a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?=$path?>controller/edituser.php">แก้ไขรายวิชา</a></li>
-                                    <li><a href="<?=$path?>controller/edituser.php">เพิ่มรายวิชา</a></li>
+                                    <li><a href="controller/edituser.php">แก้ไขรายวิชา</a></li>
+                                    <li><a href="controller/edituser.php">เพิ่มรายวิชา</a></li>
                                 </ul>
                             </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการผู้ใช้</a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="<?=$path?>controller/edituser.php">แก้ไขข้อมูลผู้ใช้</a></li>
-                                    <li><a href="<?=$path?>controller/edituser.php">เพิ่มผู้ใช้</a></li>
+                                    <li><a href="controller/edituser.php">แก้ไขข้อมูลผู้ใช้</a></li>
+                                    <li><a href="controller/edituser.php">เพิ่มผู้ใช้</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -508,5 +512,41 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+       $("#login").click(function () {
+           var user = $("#user").val();
+           var pass = $("#pass").val();
+           if(user == "" || pass == ""){
+               if(user == ""){
+                   $("#user").css("border","1px solid red");
+               }
+               else{
+                   $("#user").css("border","1px solid #ccc");
+               }
+               if(pass == ""){
+                   $("#pass").css("border","1px solid red");
+               }
+               else{
+                   $("#pass").css("border","1px solid #ccc");
+               }
+               return false;
+           }
+       });
+        $("#regis").click(function () {
+            var user = $("#username").val();
+            var pass = $("#password").val();
+            var name = $("#name").val();
+            var surname = $("#surname").val();
+            var tel = $("#tel").val();
+            var email = $("#email").val();
+            var type = $("input[name=img]:checked").val();
+            if(user == "" || pass == "" || name == "" || surname == "" || tel == "" || email == "" || type == undefined){
+                alert("กรุณากรอกข้อมูลให้ครบ");
+                return false;
+            }
+        });
+    });
+</script>
 </body>
 </html>

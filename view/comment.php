@@ -5,6 +5,54 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <?php
 include ("header.php");
+
+function minDiff($strTime1,$strTime2)
+{
+    if($strTime1>=$strTime2){
+        return $strTime1-$strTime2;
+    }
+    else{
+        return (60-$strTime2)+$strTime1;
+    }
+}
+function TimeDiff($strTime1,$strTime2)
+{
+    return (strtotime($strTime2) - strtotime($strTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+}
+function DateTimeDiff($strDateTime1,$strDateTime2)
+{
+    return (strtotime($strDateTime2) - strtotime($strDateTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+}
+function echo_date_time($com){
+    $dt = DateTimeDiff($com,date("Y-m-d H:i:s",strtotime('+5 hours')))/24;
+    if($dt<1){
+        $dt = TimeDiff(date("H:i",strtotime($com)),date("H:i",strtotime('+5 hours')));
+        if($dt<1){
+            $dt = minDiff(date("i"),date("i",strtotime($com)));
+            if($dt<1){
+                return "เมื่อสักครู่";
+            }
+            else{
+                $dt = floor($dt);
+                return $dt." นาที";
+            }
+        }
+        else{
+            $dt = floor($dt);
+            return $dt." ชั่วโมง";
+        }
+    }
+    else{
+        if($dt<30){
+            $dt = floor($dt);
+            return $dt." วัน";
+        }
+        else{
+            $dt = floor($dt/30);
+            return $dt." เดือน";
+        }
+    }
+}
 ?>
 
 <script>
@@ -13,11 +61,12 @@ include ("header.php");
 			var idcomment = $(this).parent().parent().parent().data("idcomment");
 			var idsubject = $(this).parent().parent().parent().data("idsubject");
             var user = "<?=$userlogin?>";
+            var p_img = "<?=$userlogin->getPathImg()?>";
 			var com = "<form action='../model/insert.php' method='post'><div class='reply'>";
 			com = com + "<ul class='comments-list' data-idsubject = '" + idsubject + "' data-idparent = '" + idcomment+ "'>";
 			com = com + "<li class='comment'>";
 			com = com + "<a class='pull-left' href='#'>";
-			com = com + "<img class='avatar' src='http://bootdey.com/img/Content/user_3.jpg' alt='avatar'>";
+			com = com + "<img class='avatar' src='"+p_img+"' alt='avatar'>";
 			com = com + "</a>";
 			com = com + "<div class='comment-body'>";
 			com = com + "<div class='comment-heading'>";
@@ -25,7 +74,7 @@ include ("header.php");
 			com = com + "<input type='hidden' name='idsubject' value='"+idsubject+"'/>";
 			com = com + "<input type='hidden' name='idcomment' value='"+idcomment+"'/>";
 			com = com + "<input type='text' name='txt' class='input'/>";
-			com = com + "<input type='submit'/>";
+			com = com + "<input type='submit' value='โพสต์'/>";
 			com = com + "</div>";
 			com = com + "</div>";
 			com = com + "</li> ";
@@ -99,7 +148,7 @@ include ("header.php");
                         <a href="#"><b><?=$resultArray[0]['name']?> <?=$resultArray[0]['surname']?></b></a>
                         made a post.
                     </div>
-                    <h6 class="text-muted time">1 minute ago</h6>
+                    <!--<h6 class="text-muted time"></h6>-->
                 </div>
             </div> 
             <div class="post-description"> 
@@ -113,7 +162,7 @@ include ("header.php");
                         <form action="../model/insert_0.php" method="post">
                             <input type="hidden" name="idsubject" value="<?= $resultArray[0]['id_subject'] ?>"/>
                             <input class="form-control" placeholder="Add a comment" type="text" name="txt2">
-                            <input type="submit"/>
+                            <input type="submit" value="โพสต์" style="float: right"/>
                         </form>
                     </div>
                     <?php
@@ -127,7 +176,7 @@ include ("header.php");
 								<ul class="comments-list" data-idsubject="<?=$resultArray2[$i]['id_subject']?>" data-idcomment="<?=$resultArray2[$i]['id_comment']?>">
 									<li class="comment">
 											<a class="pull-left" href="#">
-												<img class="avatar" src="http://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+												<img class="avatar" src="<?=$resultArray2[$i]['path_img']?>" alt="avatar">
 											</a>
 											<div class="comment-body">
                                             <?php
@@ -151,7 +200,7 @@ include ("header.php");
                                                 <?php
                                                     }
                                                 ?>
-                                                <h5 class="time_com">5 minutes ago</h5>
+                                                <h5 class="time_com"><?=echo_date_time($resultArray2[$i]['date_time'])?></h5>
 											</div>
 										<?php
 
@@ -162,7 +211,7 @@ include ("header.php");
 												<ul class="comments-list" data-idsubject="<?=$resultArray2[$i]['id_subject']?>" data-idparent = "<?=$resultArray3[$j]['id_comment_parent']?>" data-idcomment="<?=$resultArray3[$j]['id_comment']?>">
 													<li class="comment">
 														<a class="pull-left" href="#">
-															<img class="avatar" src="http://bootdey.com/img/Content/user_3.jpg" alt="avatar">
+															<img class="avatar" src="<?=$resultArray3[$j]['path_img']?>" alt="avatar">
 														</a>
 														<div class="comment-body">
                                                             <?php
@@ -179,7 +228,7 @@ include ("header.php");
 																<h4 class="user" style="color: #365899;"><?=$resultArray3[$j]['name']?> <?=$resultArray3[$j]['surname']?></h4>
 																<p style="display: inline;"><?=$resultArray3[$j]['txt_comment']?></p>
 															</div>
-															<h5 class="time_com">5 minutes ago</h5>
+															<h5 class="time_com"><?=echo_date_time($resultArray3[$j]['date_time'])?></h5>
 														</div>
 													</li> 
 												</ul>

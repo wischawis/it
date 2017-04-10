@@ -98,7 +98,7 @@ $lastCom = getLastComment();
                 <h4 class="modal-title">Sign In</h4>
             </div>
             <div class="modal-body" align="center">
-                <form action="controller/home.php" method="post">
+                <form action="../controller/home.php" method="post">
                     <input type="text" id="user" class="form-control" name="user" placeholder="ชื่อผู้ใช้"/>
                     <br/>
                     <br/>
@@ -124,7 +124,7 @@ $lastCom = getLastComment();
                 <h4 class="modal-title">Register</h4>
             </div>
             <div class="modal-body" align="center">
-                <form id ="register" method="post" name="register" action="">
+                <form id ="register" method="post" name="register" action="../model/register.php">
                     <table>
                         <tr>
                             <td><label for="username" style="color: darkviolet">Username</label></td>

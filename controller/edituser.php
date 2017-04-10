@@ -9,17 +9,21 @@
 <?php
 include("../class/Authentication.class.php");
 session_start();
-$userlogin = $_SESSION['user'];
-if($userlogin->getTypeUser()=="ADMIN"){
-    include ("../model/getData.php");
-    $data = getAllUser();
+if(isset($_SESSION['user'])) {
+    $userlogin = $_SESSION['user'];
+    if ($userlogin->getTypeUser() == "ADMIN") {
+        include("../model/getData.php");
+        $data = getAllUser();
 
-    include ("../view/edit_user.php");
-    exit();
+        include("../view/edit_user.php");
+        exit();
+    } else {
+        header("Location: ../index.php");
+        exit();
+    }
 }
-else{
+else {
     header("Location: ../index.php");
     exit();
 }
-
 ?>
