@@ -353,12 +353,12 @@
                         <h2>Social Contact</h2>
 
                         <ul class="social_nav">
-                            <li class="facebook"><a href="https://www.facebook.com"></a></li>
-                            <li class="twitter"><a href="https://www.twitter.com"></a></li>
-                            <li class="pinterest"><a href="https://www.pinterest.com/login/"></a></li>
-                            <li class="googleplus"><a href="https://plus.google.com/"></a></li>
-                            <li class="youtube"><a href="https://www.youtube.com/"></a></li>
-                            <li class="mail"><a href="https://mail.google.com/"></a></li>
+                            <li class="facebook"><a href="https://www.facebook.com" target="_blank"></a></li>
+                            <li class="twitter"><a href="https://www.twitter.com" target="_blank"></a></li>
+                            <li class="pinterest"><a href="https://www.pinterest.com/login/" target="_blank"></a></li>
+                            <li class="googleplus"><a href="https://plus.google.com/" target="_blank"></a></li>
+                            <li class="youtube"><a href="https://www.youtube.com/" target="_blank"></a></li>
+                            <li class="mail"><a href="https://mail.google.com/" target="_blank"></a></li>
                         </ul>
 
                     </div>

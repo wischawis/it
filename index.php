@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NewsFeed | Pages | Contact</title>
+    <title>Computer Eng Subject</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,10 +15,10 @@
     <link rel="stylesheet" type="text/css" href="css/theme.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css_pagination/style.css">
-    <!--[if lt IE 9]>
+    <!--[if lt IE 9]-->
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <!--[endif]-->
 
     <style>
         .main-subject,.sub-subject,.more{
@@ -107,7 +107,6 @@
                 array_push($resultArray, $arrCol);
             }
         }else{
-            echo "555";
             $sql = "SELECT * FROM subject";
             $res = $conn->query($sql);
             $resultArray = array();
@@ -168,18 +167,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
                     <li class="active"><a href="index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-                    <li><a href="#"></a></li>
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">เกี่ยวกับเรา</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Android</a></li>
-                            <li><a href="#">Samsung</a></li>
-                            <li><a href="#">Nokia</a></li>
-                            <li><a href="#">Walton Mobile</a></li>
-                            <li><a href="#">Sympony</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="pages/contact.html">ติดต่อ</a></li>
+                    <li><a href="view/about.php">เกี่ยวกับเรา</a></li>
                     <li>
                             <form class="navbar-form navbar-left" method="post" action="#">
                                 <div class="input-group">
@@ -414,46 +402,37 @@
     <footer id="footer">
         <div class="footer_top">
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="footer_widget wow fadeInLeftBig">
                         <h2>Social Contact</h2>
 
                         <ul class="social_nav">
-                            <li class="facebook"><a href="https://www.facebook.com"></a></li>
-                            <li class="twitter"><a href="https://www.twitter.com"></a></li>
-                            <li class="flickr"><a href="#"></a></li>
-                            <li class="pinterest"><a href="#"></a></li>
-                            <li class="googleplus"><a href="#"></a></li>
-                            <li class="vimeo"><a href="#"></a></li>
-                            <li class="youtube"><a href="#"></a></li>
-                            <li class="mail"><a href="#"></a></li>
+                            <li class="facebook"><a href="https://www.facebook.com" target="_blank"></a></li>
+                            <li class="twitter"><a href="https://www.twitter.com" target="_blank"></a></li>
+                            <li class="pinterest"><a href="https://www.pinterest.com/login/" target="_blank"></a></li>
+                            <li class="googleplus"><a href="https://plus.google.com/" target="_blank"></a></li>
+                            <li class="youtube"><a href="https://www.youtube.com/" target="_blank"></a></li>
+                            <li class="mail"><a href="https://mail.google.com/" target="_blank"></a></li>
                         </ul>
 
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="footer_widget wow fadeInDown">
-                        <h2>Subject</h2>
-                        <ul class="tag_nav">
-                            <li><a href="#">OOP</a></li>
-                            <li><a href="#">Web Application</a></li>
 
-                        </ul>
-                    </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="footer_widget wow fadeInRightBig">
                         <h2>Contact</h2>
                         <address>
-                            Perfect News,1238 S . 123 St.Suite 25 Town City 3333,USA Phone: 123-326-789 Fax: 123-546-567
+                            ภาควิชาวิศวกรรมคอมพิวเตอร์ อาคาร 8 คณะวิศวกรรมศาสตร์ กำแพงแสน มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140 </br>
+                            โทรศัพท์: 034-281074 ต่อ 7523 หรือ 099-6954159 | โทรสาร: 099-6954159  </br>
+                            ติดต่อผู้ดูแลระบบ : wis-chawis@hotmail.com
                         </address>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer_bottom">
-            <p class="copyright">Copyright &copy; 2045 <a href="index.html">NewsFeed</a></p>
-            <p class="developer">Developed By Wpfreeware</p>
+            <p class="copyright">Copyright &copy; 2017 <a href="../index.php">Computer Engineering KPS</a></p>
+            <p class="developer">Developed By Wis Chawis</p>
         </div>
     </footer>
 </div>
