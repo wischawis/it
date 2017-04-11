@@ -91,9 +91,9 @@
 
                     <li><a href="pages/contact.html">ติดต่อ</a></li>
                     <li>
-                        <form class="navbar-form navbar-left">
+                        <form class="navbar-form navbar-left" method="post" action="../index.php">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
