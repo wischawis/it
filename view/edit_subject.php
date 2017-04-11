@@ -6,7 +6,6 @@
  * Time: 22:41
  */
     include ("header.php");
-    include_once ("../controller/editSubject.php");
 
 ?>
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
@@ -16,8 +15,8 @@
 <head>
     <script>
         $(document).ready(function () {
-           // $('#table_id').dataTable();
-            var check_sub1;
+            $('#table_id').dataTable();
+            /*var check_sub1;
             var check_sub2;
             $('#name_th').keyup(function (){
                 var subname = $('#name_th').val();
@@ -61,7 +60,7 @@
                 $("#modal_editSubject").modal('show');
 
                 var id = $(this).data('id');
-                var data = <?=json_encode($dataSubjects);?>;
+                var data = //json_encode($dataSubjects);?>;
                 var subject_select;
                 for(var i=0;i<data.length;i++){
                     if(id == data[i]['2']){
@@ -73,23 +72,22 @@
                 $('#name_th').val(subject_select['1']);
                 $('#subject_code').val(subject_select['0']);
                 $('#description').val(subject_select['3']);
-            });
-            $(".delete_col").click(function () {
-                var id = $(this).data('id');
-                var data = <?=json_encode($dataSubjects);?>;
-                var subject_select;
-                for(var i=0;i<data.length;i++){
-                    if(id == data[i]['2']){
-                        subject_select = data[i];
-                        break;
-                    }
-                }
-                if(confirm("Do you want to delete "+subject_select['1']+" subject?")){
-                    window.location = '../controller/editSubject.php?idSubject=' + id;
-                }
-            });
+            });*/
         });
 
+        function deleteSubject(id) {
+            var data = <?=json_encode($dataSubjects);?>;
+            var subject_select;
+            for(var i=0;i<data.length;i++){
+                if(id == data[i]['2']){
+                    subject_select = data[i];
+                    break;
+                }
+            }
+            if(confirm("Do you want to delete "+subject_select['1']+" subject?")){
+                window.location = '../controller/editSubject.php?idSubject=' + id;
+            }
+        }
     </script>
     <style>
         .edit_col,.delete_col{
@@ -102,7 +100,13 @@
 </head>
 <boby>
     <table id="table_id" class="table table-striped" align="center">
-        <th>No</th><th>Code subject</th><th>Name subject</th><th>Manage subject</th>
+        <thead>
+            <th>No</th>
+            <th>Code subject</th>
+            <th>Name subject</th>
+            <th>Manage subject</th>
+        </thead>
+        <tbody>
         <?php
         for($j=0;$j<count($dataSubjects);$j++)
         { echo
@@ -112,19 +116,16 @@
 							<td>".$dataSubjects[$j]['1']."</td>							
 							<td>    
 							        <div   class='edit_col'  data-id='".$dataSubjects[$j]['2']."'>
-                                        <i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\">
-                                            <span>แก้ไข</span>
-                                        </i>
-                                     </div>
-                                     <div class='delete_col' data-id='".$dataSubjects[$j]['2']."'>
-                                        <i class=\"fa fa-trash-o\" aria-hidden=\"true\">
-                                            <span>ลบ</span>
-                                        </i>
+                                        <a href='../controller/edit.php?idSubject=".$dataSubjects[$j]['2']."'><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>แก้ไข</a>
+                                    </div>
+                                    <div class='delete_col' data-id='".$dataSubjects[$j]['2']."'>
+                                        <a onclick='deleteSubject(".$dataSubjects[$j]['2'].")'><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i>ลบ</a>
                                     </div>                           
                             </td>
 			</tr>";
         }
         ?>
+        </tbody>
     </table>
     <!-- Modal -->
     <div class="modal fade" id="modal_editSubject" role="dialog">

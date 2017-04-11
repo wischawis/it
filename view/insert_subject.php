@@ -33,7 +33,7 @@
                     }
                 });
         });
-        $('#subject_code').keyup(function () {
+        $('#subject_code').change(function () {
             var subcode = $('#subject_code').val();
             $.ajax({
                 url: "../model/findSubject.php",
@@ -68,10 +68,16 @@
 
         $('#cancel').click(function () {
             $("input[type='text']").val("");
+            $("textarea").val("");
             return false;
         });
     });
 </script>
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
 </head>
 <body>
     <form action="../model/insertS.php" method="post">
@@ -97,7 +103,7 @@
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">รายละเอียดรายวิชา</label>
                 <div class="col-md-8 col-sm-8 col-xs-12">
-                    <textarea  type="text" class="form-control" rows="3" name="description" id="description" minlength="20" ></textarea>
+                    <textarea  type="text" class="form-control" rows="10" name="description" id="description" minlength="20" ></textarea>
                 </div>
             </div>
         </div>

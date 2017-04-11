@@ -56,12 +56,13 @@ function echo_date_time($com){
 ?>
 
 <script>
+
 	$(document).ready(function(){
 		$(".call_back").click(function(){
 			var idcomment = $(this).parent().parent().parent().data("idcomment");
 			var idsubject = $(this).parent().parent().parent().data("idsubject");
             var user = "<?=$userlogin?>";
-            var p_img = "<?=$userlogin->getPathImg()?>";
+            var p_img = "<?=$p_img?>";
 			var com = "<form action='../model/insert.php' method='post'><div class='reply'>";
 			com = com + "<ul class='comments-list' data-idsubject = '" + idsubject + "' data-idparent = '" + idcomment+ "'>";
 			com = com + "<li class='comment'>";

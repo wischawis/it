@@ -16,6 +16,7 @@ class Member
     private $tel;
     private $email;
     private $type_user;
+    private $id_img;
     private $path_img;
 
     /**
@@ -29,8 +30,9 @@ class Member
      * @param $email
      * @param $type_user
      * @param $id_img
+     * @param $path_img
      */
-    public function __construct($id, $username, $password, $name, $surname, $tel, $email, $type_user, $path_img)
+    public function __construct($id, $username, $password, $name, $surname, $tel, $email, $type_user,$id_img, $path_img)
     {
         $this->id = $id;
         $this->username = $username;
@@ -40,6 +42,7 @@ class Member
         $this->tel = $tel;
         $this->email = $email;
         $this->type_user = $type_user;
+        $this->id_img = $id_img;
         $this->path_img = $path_img;
     }
 
@@ -175,6 +178,22 @@ class Member
     public function setTypeUser($type_user)
     {
         $this->type_user = $type_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdImg()
+    {
+        return $this->id_img;
+    }
+
+    /**
+     * @param mixed $id_img
+     */
+    public function setIdImg($id_img)
+    {
+        $this->id_img = $id_img;
     }
 
     /**
