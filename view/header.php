@@ -77,19 +77,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="<?=$path?>index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-                    <li><a href="#"></a></li>
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">เกี่ยวกับเรา</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="../controller/detail.php?idsub=1">Android</a></li>
-                            <li><a href="#">Samsung</a></li>
-                            <li><a href="#">Nokia</a></li>
-                            <li><a href="#">Walton Mobile</a></li>
-                            <li><a href="#">Sympony</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="pages/contact.html">ติดต่อ</a></li>
+                    <li class="active"><a href="../index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+                    <li><a href="../view/about.php">เกี่ยวกับเรา</a></li>
                     <li>
                         <form class="navbar-form navbar-left" method="post" action="../index.php">
                             <div class="input-group">
