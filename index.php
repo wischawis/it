@@ -74,24 +74,62 @@
             }
             return $resultArray;
         }
-        $sql = "SELECT * FROM subject";
-        $res = $conn->query($sql);
-        $resultArray = array();
-        while($obResult = $res->fetch(PDO::FETCH_ASSOC))
-        {
-            $arrCol = array();
-            $arrCol = array("id_subject"=>$obResult['id_subject'],
-                "name_th"=>$obResult['name_th'],
-                "code"=>$obResult['subject_code'],
-                "description"=>$obResult['description']);
-            array_push($resultArray,$arrCol);
+        if(isset($_POST["search"])) {
+            $search = $_POST["search"];
+            $num = strpos($search," ");
+            $stNum = "-55";
+            $stName = "-55";
+            if($num==null){
+                $stNum = $search;
+                $stName = $search;
+                $sql = "SELECT * FROM subject WHERE (subject_code LIKE '%$stNum%' or name_th LIKE '%$stName%' )";
+            }else if($num>=0&&$num<8 &&(ord($search[0])>=48 && ord($search[0]<=57))){
+                $stNum = substr($search,0,$num);
+                    $stName = substr($search, $num + 1, strlen($search) - 1);
+                $sql = "SELECT * FROM subject WHERE (subject_code LIKE '%$stNum%' and name_th LIKE '%$stName%' )";
+            }else if($num != strlen($search)-1){
+                $stName = $search;
+                $sql = "SELECT * FROM subject WHERE (subject_code LIKE '%$stNum%' or name_th LIKE '%$stName%' )";
+            }else{
+                $stName = substr($search,0,$num);
+                $sql = "SELECT * FROM subject WHERE (subject_code LIKE '%$stNum%' or name_th LIKE '%$stName%' )";
+            }
+
+
+            $res = $conn->query($sql);
+            $resultArray = array();
+            while ($obResult = $res->fetch(PDO::FETCH_ASSOC)) {
+                $arrCol = array();
+                $arrCol = array("id_subject" => $obResult['id_subject'],
+                    "name_th" => $obResult['name_th'],
+                    "code" => $obResult['subject_code'],
+                    "description" => $obResult['description']);
+                array_push($resultArray, $arrCol);
+            }
+        }else{
+            echo "555";
+            $sql = "SELECT * FROM subject";
+            $res = $conn->query($sql);
+            $resultArray = array();
+            while ($obResult = $res->fetch(PDO::FETCH_ASSOC)) {
+                $arrCol = array();
+                $arrCol = array("id_subject" => $obResult['id_subject'],
+                    "name_th" => $obResult['name_th'],
+                    "code" => $obResult['subject_code'],
+                    "description" => $obResult['description']);
+                array_push($resultArray, $arrCol);
+            }
         }
-        $userlogin;
-        $lastCom = getLastComment();
-        session_start();
-        if(isset($_SESSION['user'])){
-            $userlogin = $_SESSION['user'];
-        }
+
+
+
+
+    $userlogin;
+    $lastCom = getLastComment();
+    session_start();
+    if (isset($_SESSION['user'])) {
+        $userlogin = $_SESSION['user'];
+    }
 
 
     ?>
@@ -143,9 +181,9 @@
 
                     <li><a href="pages/contact.html">ติดต่อ</a></li>
                     <li>
-                            <form class="navbar-form navbar-left">
+                            <form class="navbar-form navbar-left" method="post" action="#">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit">
                                             <i class="glyphicon glyphicon-search"></i>
