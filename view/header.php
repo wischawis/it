@@ -15,7 +15,53 @@
         if(isset($_SESSION['user'])){
             $userlogin = $_SESSION['user'];
         }
-
+        function minDiff($strTime1,$strTime2)
+        {
+            if($strTime1>=$strTime2){
+                return $strTime1-$strTime2;
+            }
+            else{
+                return (60-$strTime2)+$strTime1;
+            }
+        }
+        function TimeDiff($strTime1,$strTime2)
+        {
+            return (strtotime($strTime2) - strtotime($strTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+        }
+        function DateTimeDiff($strDateTime1,$strDateTime2)
+        {
+            return (strtotime($strDateTime2) - strtotime($strDateTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+        }
+        function echo_date_time($com){
+            $dt = DateTimeDiff($com,date("Y-m-d H:i:s",strtotime('+5 hours')))/24;
+            if($dt<1){
+                $dt = TimeDiff(date("H:i",strtotime($com)),date("H:i",strtotime('+5 hours')));
+                if($dt<1){
+                    $dt = minDiff(date("i"),date("i",strtotime($com)));
+                    if($dt<1){
+                        return "เมื่อสักครู่";
+                    }
+                    else{
+                        $dt = floor($dt);
+                        return $dt." นาที";
+                    }
+                }
+                else{
+                    $dt = floor($dt);
+                    return $dt." ชั่วโมง";
+                }
+            }
+            else{
+                if($dt<30){
+                    $dt = floor($dt);
+                    return $dt." วัน";
+                }
+                else{
+                    $dt = floor($dt/30);
+                    return $dt." เดือน";
+                }
+            }
+        }
     ?>
     <title>NewsFeed | Pages | Contact</title>
     <meta charset="utf-8">

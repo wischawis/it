@@ -7,6 +7,14 @@
  */
 ?>
 </div>
+<style>
+    .time_com{
+        font-size: 12px;
+        color: #aaa;
+        margin-top: 0;
+        display: inline;
+    }
+</style>
 <?php
 $lastCom = getLastComment();
 ?>
@@ -21,13 +29,14 @@ $lastCom = getLastComment();
                     ?>
                     <li>
                         <div class="media"><a href="../controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="media-left"> <img
-                                        alt="" src="../images/post_img1.jpg"> </a>
+                                        alt="" src="<?=$lastCom[$last]['path_img']?>"> </a>
                             <div class="media-body">
                                 <a href="../controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="catg_title">
                                     <?php
-                                    echo "<b>".$lastCom[$last]['name']." ".$lastCom[$last]['surname']."</b> แสดงความคิดเห็นในวิชา ".$lastCom[$last]['name_th'];
+                                    echo "<b>".$lastCom[$last]['name']." ".$lastCom[$last]['surname']."</b> แสดงความคิดเห็นในวิชา <b>".$lastCom[$last]['name_th']."</b><br/>";
                                     ?>
                                 </a>
+                                <?="<h5 class='time_com'>".echo_date_time($lastCom[$last]['date_time'])."</h5>"?>
                             </div>
                         </div>
                     </li>
