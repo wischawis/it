@@ -26,8 +26,9 @@ include ("header.php");
            $("#cancel,#edit").attr("type","submit");
         });
         $("#cancel").click(function () {
-            $("input").removeAttr("disabled");
-            $("#cancel,#edit").attr("type","submit");
+            $("input").attr("disabled","disabled");
+            $("#edit_profile").removeAttr("disabled");
+            $("#cancel,#edit").attr("type","hidden");
         });
     });
 </script>
