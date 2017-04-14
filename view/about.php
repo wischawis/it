@@ -195,10 +195,7 @@
 
         <div class="row" id="test-list">
             <br class="col-lg-12 col-md-12 col-sm-12">
-                <img src="../images/band_eng.jpg" align="center" class="img-center img-responsive">
-
-
-
+            <img src="../images/band_eng.jpg" align="center" class="img-center img-responsive"></br>
 
                 <table style="height: 40px;width: 80%;" border="0" align="center">
                     <tbody style="text-align: left;">
