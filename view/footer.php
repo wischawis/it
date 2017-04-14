@@ -28,8 +28,8 @@ $lastCom = getLastComment();
                 for($last=0;$last<count($lastCom);$last++) {
                     ?>
                     <li>
-                        <div class="media"><a href="../controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="media-left"> <img
-                                        alt="" src="<?=$lastCom[$last]['path_img']?>"> </a>
+                        <div class="media"><a href="../controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="media-left">
+                                <img alt="" src="<?=$lastCom[$last]['path_img']?>"/> </a>
                             <div class="media-body">
                                 <a href="../controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="catg_title">
                                     <?php
@@ -48,8 +48,7 @@ $lastCom = getLastComment();
         </div>
     </div>
 </div>
-</div>
-</section>
+
 <footer id="footer">
     <div class="footer_top">
         <div class="row">

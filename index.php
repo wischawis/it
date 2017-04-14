@@ -51,29 +51,30 @@
 
         include ("config.inc.php");
         include ("class/Member.class.php");
-        function getLastComment(){
-            global $conn;
-            $sql = "SELECT * FROM member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user ORDER BY date_time DESC LIMIT 5";
-            $res = $conn->query($sql);
-            $resultArray = array();
-            while($obResult = $res->fetch(PDO::FETCH_ASSOC))
-            {
-                $arrCol = array();
-                $arrCol = array("id_comment"=>$obResult['id_comment'],
-                    "txt_comment"=>$obResult['txt_comment'],
-                    "date_time"=>$obResult['date_time'],
-                    "level"=>$obResult['level'],
-                    "id_comment_parent"=>$obResult['id_comment_parent'],
-                    "id_user"=>$obResult['id_user'],
-                    "id_subject"=>$obResult['id_subject'],
-                    "name_th"=>$obResult['name_th'],
-                    "subject_code"=>$obResult['subject_code'],
-                    "name"=>$obResult['name'],
-                    "surname"=>$obResult['surname']);
-                array_push($resultArray,$arrCol);
-            }
-            return $resultArray;
+    function getLastComment(){
+        global $conn;
+        $sql = "SELECT * FROM img INNER JOIN (member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user) ON img.id_img=member.id_img  ORDER BY date_time DESC LIMIT 5";
+        $res = $conn->query($sql);
+        $resultArray = array();
+        while($obResult = $res->fetch(PDO::FETCH_ASSOC))
+        {
+            $arrCol = array();
+            $arrCol = array("id_comment"=>$obResult['id_comment'],
+                "txt_comment"=>$obResult['txt_comment'],
+                "date_time"=>$obResult['date_time'],
+                "level"=>$obResult['level'],
+                "id_comment_parent"=>$obResult['id_comment_parent'],
+                "id_user"=>$obResult['id_user'],
+                "id_subject"=>$obResult['id_subject'],
+                "name_th"=>$obResult['name_th'],
+                "subject_code"=>$obResult['subject_code'],
+                "name"=>$obResult['name'],
+                "surname"=>$obResult['surname'],
+                "path_img"=>$obResult['path_img']);
+            array_push($resultArray,$arrCol);
         }
+        return $resultArray;
+    }
         if(isset($_POST["search"])) {
             $search = $_POST["search"];
             $num = strpos($search," ");
@@ -281,7 +282,7 @@
             </div>
 
 
-            <div class="col-lg-4 col-md-4 col-sm-4">
+          < <div class="col-lg-4 col-md-4 col-sm-4">
                 <div class="latest_post">
                     <h2><span>ความคิดเห็นล่าสุด</span></h2>
                     <div class="latest_post_container">
@@ -289,10 +290,11 @@
                         <ul class="latest_postnav">
                             <?php
                                 for($last=0;$last<count($lastCom);$last++) {
+                                    $img_sub = substr($lastCom[$last]['path_img'],3);
                                     ?>
                                     <li>
-                                        <div class="media"><a href="controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="media-left"> <img
-                                                        alt="" src="images/post_img1.jpg"> </a>
+                                        <div class="media"><a href="controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="media-left">
+                                                <img alt="" src="<?=$img_sub?>"/> </a>
                                             <div class="media-body">
                                                 <a href="controller/detail.php?idsub=<?=$lastCom[$last]['id_subject']?>" class="catg_title">
                                                     <?php
@@ -399,7 +401,7 @@
             </div>
         </div>
     </section>
-    <footer id="footer">
+   <footer id="footer">
         <div class="footer_top">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -504,7 +506,7 @@
                         </tr>
                         <tr>
                             <td><label for="email" style="color: orange">E-mail</label></td>
-                            <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="20"/><br/></td>
+                            <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="50"/><br/></td>
                         </tr>
                         <tr>
                             <td><label for="email" style="color: orange">Picture</label></td>
@@ -520,7 +522,7 @@
                         </tr>
                     </table>
                     <br/>
-                    <input type="submit" class="btn btn-success" name="regis" id="regis" value="Regis"/>
+                    <input type="submit" class="btn btn-success" name="regis" id="regis" value="ยืนยัน"/>
                 </form>
             </div>
             <div class="modal-footer">
