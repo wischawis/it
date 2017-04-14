@@ -109,9 +109,9 @@
                     <li><a href="#"></a></li>
                     <li><a href="about.php">เกี่ยวกับเรา</a></li>
                     <li>
-                        <form class="navbar-form navbar-left">
+                        <form class="navbar-form navbar-left" action="../index.php" method="post">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
