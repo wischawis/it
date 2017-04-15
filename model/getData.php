@@ -155,4 +155,20 @@ function getLastComment(){
     }
     return $resultArray;
 }
+function getPicturePro($idUser){
+    global $conn;
+    $sql = "SELECT * FROM `img_member` INNER JOIN img ON img.id_img=img_member.id_img WHERE id_mem='$idUser'";
+    $res = $conn->query($sql);
+    $resultArray = array();
+    while ($obResult = $res->fetch(PDO::FETCH_ASSOC)){
+        $arrCol = array();
+        $arrCol = array("id_imgmem"=>$obResult['id_imgmem'],
+            "id_mem"=>$obResult['id_mem'],
+            "id_img"=>$obResult['id_img'],
+            "status"=>$obResult['status'],
+            "path_img"=>$obResult['path_img']);
+        array_push($resultArray,$arrCol);
+    }
+    return $resultArray;
+}
 ?>

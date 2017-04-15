@@ -17,7 +17,10 @@ if(isset($_POST['regis'])){
     $img = $_POST['img'];
     $sql = "INSERT INTO member (username, password, name, surname, tel, email, type_user,id_img) VALUES('$username','$password','$name','$surname','$tel','$email','USER','$img')";
     $res = $conn->exec($sql);
+    $idmem = $conn->lastInsertId();
     if($res){
+        $sql2 = "INSERT INTO img_member (id_mem,id_img,status) VALUES ('$idmem','$img','1')";
+        $res2 = $conn->exec($sql2);
         echo "<script>alert('SUCCESS')</script>";
     }
     else{
