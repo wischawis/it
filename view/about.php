@@ -109,9 +109,9 @@
                     <li><a href="#"></a></li>
                     <li><a href="about.php">เกี่ยวกับเรา</a></li>
                     <li>
-                        <form class="navbar-form navbar-left">
+                        <form class="navbar-form navbar-left" action="../index.php" method="post">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
@@ -195,10 +195,7 @@
 
         <div class="row" id="test-list">
             <br class="col-lg-12 col-md-12 col-sm-12">
-                <img src="../images/band_eng.jpg" align="center" class="img-center img-responsive">
-
-
-
+            <img src="../images/band_eng.jpg" align="center" class="img-center img-responsive"></br>
 
                 <table style="height: 40px;width: 80%;" border="0" align="center">
                     <tbody style="text-align: left;">
@@ -353,12 +350,12 @@
                         <h2>Social Contact</h2>
 
                         <ul class="social_nav">
-                            <li class="facebook"><a href="https://www.facebook.com"></a></li>
-                            <li class="twitter"><a href="https://www.twitter.com"></a></li>
-                            <li class="pinterest"><a href="https://www.pinterest.com/login/"></a></li>
-                            <li class="googleplus"><a href="https://plus.google.com/"></a></li>
-                            <li class="youtube"><a href="https://www.youtube.com/"></a></li>
-                            <li class="mail"><a href="https://mail.google.com/"></a></li>
+                            <li class="facebook"><a href="https://www.facebook.com" target="_blank"></a></li>
+                            <li class="twitter"><a href="https://www.twitter.com" target="_blank"></a></li>
+                            <li class="pinterest"><a href="https://www.pinterest.com/login/" target="_blank"></a></li>
+                            <li class="googleplus"><a href="https://plus.google.com/" target="_blank"></a></li>
+                            <li class="youtube"><a href="https://www.youtube.com/" target="_blank"></a></li>
+                            <li class="mail"><a href="https://mail.google.com/" target="_blank"></a></li>
                         </ul>
 
                     </div>

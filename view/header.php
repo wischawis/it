@@ -15,7 +15,53 @@
         if(isset($_SESSION['user'])){
             $userlogin = $_SESSION['user'];
         }
-
+        function minDiff($strTime1,$strTime2)
+        {
+            if($strTime1>=$strTime2){
+                return $strTime1-$strTime2;
+            }
+            else{
+                return (60-$strTime2)+$strTime1;
+            }
+        }
+        function TimeDiff($strTime1,$strTime2)
+        {
+            return (strtotime($strTime2) - strtotime($strTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+        }
+        function DateTimeDiff($strDateTime1,$strDateTime2)
+        {
+            return (strtotime($strDateTime2) - strtotime($strDateTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+        }
+        function echo_date_time($com){
+            $dt = DateTimeDiff($com,date("Y-m-d H:i:s",strtotime('+5 hours')))/24;
+            if($dt<1){
+                $dt = TimeDiff(date("H:i",strtotime($com)),date("H:i",strtotime('+5 hours')));
+                if($dt<1){
+                    $dt = minDiff(date("i"),date("i",strtotime($com)));
+                    if($dt<1){
+                        return "เมื่อสักครู่";
+                    }
+                    else{
+                        $dt = floor($dt);
+                        return $dt." นาที";
+                    }
+                }
+                else{
+                    $dt = floor($dt);
+                    return $dt." ชั่วโมง";
+                }
+            }
+            else{
+                if($dt<30){
+                    $dt = floor($dt);
+                    return $dt." วัน";
+                }
+                else{
+                    $dt = floor($dt/30);
+                    return $dt." เดือน";
+                }
+            }
+        }
     ?>
     <title>NewsFeed | Pages | Contact</title>
     <meta charset="utf-8">
@@ -77,23 +123,12 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="<?=$path?>index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
-                    <li><a href="#"></a></li>
-                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">เกี่ยวกับเรา</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="../controller/detail.php?idsub=1">Android</a></li>
-                            <li><a href="#">Samsung</a></li>
-                            <li><a href="#">Nokia</a></li>
-                            <li><a href="#">Walton Mobile</a></li>
-                            <li><a href="#">Sympony</a></li>
-                        </ul>
-                    </li>
-
-                    <li><a href="pages/contact.html">ติดต่อ</a></li>
+                    <li class="active"><a href="../index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
+                    <li><a href="../view/about.php">เกี่ยวกับเรา</a></li>
                     <li>
-                        <form class="navbar-form navbar-left">
+                        <form class="navbar-form navbar-left" method="post" action="../index.php">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" class="form-control" placeholder="Search" id="search" name="search">
                                 <div class="input-group-btn">
                                     <button class="btn btn-default" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>

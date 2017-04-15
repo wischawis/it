@@ -16,7 +16,7 @@
     <script>
         $(document).ready(function () {
             $('#table_id').dataTable();
-            /*var check_sub1;
+            var check_sub1;
             var check_sub2;
             $('#name_th').keyup(function (){
                 var subname = $('#name_th').val();
@@ -56,11 +56,11 @@
             });
 
 
-            $(".edit_col").click(function () {
+            $(document).on("click", ".edit_col", function () {
                 $("#modal_editSubject").modal('show');
 
                 var id = $(this).data('id');
-                var data = //json_encode($dataSubjects);?>;
+                var data = <?=json_encode($dataSubjects);?>;
                 var subject_select;
                 for(var i=0;i<data.length;i++){
                     if(id == data[i]['2']){
@@ -72,7 +72,7 @@
                 $('#name_th').val(subject_select['1']);
                 $('#subject_code').val(subject_select['0']);
                 $('#description').val(subject_select['3']);
-            });*/
+            });
         });
 
         function deleteSubject(id) {
@@ -96,6 +96,10 @@
         .ch{
             float: left;
         }
+        textarea.form-control{
+            resize: none;
+            height: 200px;
+        }
     </style>
 </head>
 <boby>
@@ -111,17 +115,17 @@
         for($j=0;$j<count($dataSubjects);$j++)
         { echo
             "<tr>               
-                            <td>".($j+1)."</td>
-							<td>".$dataSubjects[$j]['0']."</td>
-							<td>".$dataSubjects[$j]['1']."</td>							
-							<td>    
-							        <div   class='edit_col'  data-id='".$dataSubjects[$j]['2']."'>
-                                        <a href='../controller/edit.php?idSubject=".$dataSubjects[$j]['2']."'><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>แก้ไข</a>
-                                    </div>
-                                    <div class='delete_col' data-id='".$dataSubjects[$j]['2']."'>
-                                        <a onclick='deleteSubject(".$dataSubjects[$j]['2'].")'><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i>ลบ</a>
-                                    </div>                           
-                            </td>
+                <td>".($j+1)."</td>
+                <td>".$dataSubjects[$j]['0']."</td>
+                <td>".$dataSubjects[$j]['1']."</td>							
+                <td>    
+                        <div   class='edit_col'  data-id='".$dataSubjects[$j]['2']."'>
+                            <a><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i>แก้ไข</a>
+                        </div>
+                        <div class='delete_col' data-id='".$dataSubjects[$j]['2']."'>
+                            <a onclick='deleteSubject(".$dataSubjects[$j]['2'].")'><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i>ลบ</a>
+                        </div>                           
+                </td>
 			</tr>";
         }
         ?>
@@ -161,11 +165,10 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" align="left">รายละเอียด</label>
                                 <div class="col-md-8 col-sm-8 col-xs-12">
-                                    <textarea type="text" class="form-control" name="description" id="description" row="5" minlength="20"></textarea>
+                                    <textarea type="text" class="form-control" name="description" id="description" row="10" minlength="20"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <br/>
 
                         <br/>
                         <div class="row">

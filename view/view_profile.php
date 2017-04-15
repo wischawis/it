@@ -26,8 +26,9 @@ include ("header.php");
            $("#cancel,#edit").attr("type","submit");
         });
         $("#cancel").click(function () {
-            $("input").removeAttr("disabled");
-            $("#cancel,#edit").attr("type","submit");
+            $("input").attr("disabled","disabled");
+            $("#edit_profile").removeAttr("disabled");
+            $("#cancel,#edit").attr("type","hidden");
         });
     });
 </script>
@@ -38,7 +39,7 @@ include ("header.php");
         <input type="submit" class="btn btn-warning" name="cancel" id="edit_profile" value="แก้ไข"/>
     </div>
     <br/>
-    <form action="../model/updateProfile.php" method="post">
+    <form action="../model/updateProfile.php" method="post" enctype="multipart/form-data">
         <input type="hidden"  name="idmem" id="idmem" value="<?=$userlogin->getId()?>"/>
         <div class="row">
             <div class="form-group">
@@ -107,6 +108,23 @@ include ("header.php");
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <input type="radio" style="float: left" name="img" value="3" <?php $userlogin->getIdImg() == "3"? $ch='checked' : $ch="";  echo $ch; ?> disabled/><img src="../images/user_3.jpg"/>
                     </div>
+                    <?php
+                        $picture = getPicturePro( $userlogin->getId());
+
+                        for($imgnum=0;$imgnum<count($picture);$imgnum++){
+                           echo " <div class=\"col-md-4 col-sm-4 col-xs-12\">
+                                <input type=\"radio\" style=\"float: left;\" name=\"img\" value='".$picture[$imgnum]['id_img']."' disabled/><img width='100px' height='100px' src='".$picture[$imgnum]['path_img']."'>
+                            </div>";
+                        }
+                    ?>
+                </div>
+            </div>
+        </div></br>
+        <div class="row">
+            <div class="form-group">
+                <label class="control-label col-md-3 col-sm-3 col-xs-12">อัพโหลดรูปภาพ</label>
+                <div class="col-md-8 col-sm-8 col-xs-12">
+                    <input class="file" type="file" id="imgFile" name="imgFile" disabled/>
                 </div>
             </div>
         </div>

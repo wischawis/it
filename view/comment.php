@@ -6,53 +6,7 @@
 <?php
 include ("header.php");
 
-function minDiff($strTime1,$strTime2)
-{
-    if($strTime1>=$strTime2){
-        return $strTime1-$strTime2;
-    }
-    else{
-        return (60-$strTime2)+$strTime1;
-    }
-}
-function TimeDiff($strTime1,$strTime2)
-{
-    return (strtotime($strTime2) - strtotime($strTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
-}
-function DateTimeDiff($strDateTime1,$strDateTime2)
-{
-    return (strtotime($strDateTime2) - strtotime($strDateTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
-}
-function echo_date_time($com){
-    $dt = DateTimeDiff($com,date("Y-m-d H:i:s",strtotime('+5 hours')))/24;
-    if($dt<1){
-        $dt = TimeDiff(date("H:i",strtotime($com)),date("H:i",strtotime('+5 hours')));
-        if($dt<1){
-            $dt = minDiff(date("i"),date("i",strtotime($com)));
-            if($dt<1){
-                return "เมื่อสักครู่";
-            }
-            else{
-                $dt = floor($dt);
-                return $dt." นาที";
-            }
-        }
-        else{
-            $dt = floor($dt);
-            return $dt." ชั่วโมง";
-        }
-    }
-    else{
-        if($dt<30){
-            $dt = floor($dt);
-            return $dt." วัน";
-        }
-        else{
-            $dt = floor($dt/30);
-            return $dt." เดือน";
-        }
-    }
-}
+
 ?>
 
 <script>
@@ -152,8 +106,8 @@ function echo_date_time($com){
                     <!--<h6 class="text-muted time"></h6>-->
                 </div>
             </div> 
-            <div class="post-description"> 
-                <p><?=$resultArray[0]['description']?></p>
+            <div class="post-description">
+                <p><label><?=$resultArray[0]['subject_code']." ".$resultArray[0]['name_th']?></label><br/><?=$resultArray[0]['description']?></p>
             </div>
             <div class="post-footer">
                 <?php

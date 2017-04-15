@@ -133,7 +133,7 @@ function getAllUser(){
 }
 function getLastComment(){
     global $conn;
-    $sql = "SELECT * FROM member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user ORDER BY date_time DESC LIMIT 5";
+    $sql = "SELECT * FROM img INNER JOIN (member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user) ON img.id_img=member.id_img  ORDER BY date_time DESC LIMIT 5";
     $res = $conn->query($sql);
     $resultArray = array();
     while($obResult = $res->fetch(PDO::FETCH_ASSOC))
@@ -149,7 +149,24 @@ function getLastComment(){
             "name_th"=>$obResult['name_th'],
             "subject_code"=>$obResult['subject_code'],
             "name"=>$obResult['name'],
-            "surname"=>$obResult['surname']);
+            "surname"=>$obResult['surname'],
+            "path_img"=>$obResult['path_img']);
+        array_push($resultArray,$arrCol);
+    }
+    return $resultArray;
+}
+function getPicturePro($idUser){
+    global $conn;
+    $sql = "SELECT * FROM `img_member` INNER JOIN img ON img.id_img=img_member.id_img WHERE id_mem='$idUser'";
+    $res = $conn->query($sql);
+    $resultArray = array();
+    while ($obResult = $res->fetch(PDO::FETCH_ASSOC)){
+        $arrCol = array();
+        $arrCol = array("id_imgmem"=>$obResult['id_imgmem'],
+            "id_mem"=>$obResult['id_mem'],
+            "id_img"=>$obResult['id_img'],
+            "status"=>$obResult['status'],
+            "path_img"=>$obResult['path_img']);
         array_push($resultArray,$arrCol);
     }
     return $resultArray;

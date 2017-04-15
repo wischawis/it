@@ -12,6 +12,10 @@ include ("../model/getData.php");
 include ("header.php");
 
 ?>
+<link rel="stylesheet" type="text/css" href="../css_pagination/style.css">
+<script src="../js_pagination/jquery.js"></script>
+<script src="../js_pagination/paginate.js"></script>
+<script src="../js_pagination/custom.js"></script>
 <style>
     .main-subject,.sub-subject,.more{
         display: block;
@@ -31,11 +35,12 @@ include ("header.php");
         text-overflow: ellipsis;
     }
 </style>
+
 <?php
 $resultArray = getAllSubject();
 for ($i=0;$i<count($resultArray);$i++) {
     ?>
-    <div class="subject">
+    <div class="subject post">
         <div class="main-subject">
             <span><b><?=$resultArray[$i]['code']?></b></span>
             <span><b><?=$resultArray[$i]['name_th']?></b></span>
@@ -45,9 +50,14 @@ for ($i=0;$i<count($resultArray);$i++) {
         </div>
         <div class="more"><a href="../controller/detail.php?idsub=<?=$resultArray[$i]['id_subject']?>" >more</a></div>
     </div>
+
     <?php
 }
 ?>
+    <ul class="pagination">
+        <!-- Page Subject -->
+    </ul>
+
 
 <?php
 include ("footer.php");

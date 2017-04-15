@@ -14,7 +14,7 @@ include ("header.php");
 <script>
     $(document).ready( function () {
         $('#table_id').dataTable();
-        $(".edit_col").click(function () {
+        $(document).on("click", ".edit_col", function () {
             $("#modal_edit").modal('show');
             var id = $(this).data('id');
             var data = <?=json_encode($data);?>;
@@ -32,11 +32,18 @@ include ("header.php");
             $('#surname').val(user_select['surname']);
             $('#tel').val(user_select['tel']);
             $('#email').val(user_select['email']);
+            if(user_select['type_user'] == "USER"){
+                $('#us').prop('checked',true);
+            }
+            else{
+                $('#ad').prop('checked',true);
+            }
         });
-        $(".delete_col").click(function () {
+        $(document).on("click", ".delete_col", function () {
             var id = $(this).data('id');
             window.location = '../model/manageUser.php?iduser='+id;
         });
+
     });
 </script>
 <style>
@@ -145,8 +152,8 @@ include ("header.php");
                         <div class="form-group">
                             <div class="control-label col-md-2 col-sm-2 col-xs-12">ชนิดผู้ใช้</div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <input type="radio" style="float: left" name="type_user" value="USER"/> <span class="ch"> USER</span><br>
-                                <input type="radio" style="float: left" name="type_user" value="ADMIN"/><span class="ch"> ADMIN</span>
+                                <input type="radio" style="float: left" name="type_user" value="USER" id="us"/> <span class="ch"> USER</span><br>
+                                <input type="radio" style="float: left" name="type_user" value="ADMIN" id="ad"/><span class="ch"> ADMIN</span>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
                             </div>
