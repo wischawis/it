@@ -543,7 +543,125 @@
             var type = $("input[name=img]:checked").val();
             if(user == "" || pass == "" || name == "" || surname == "" || tel == "" || email == "" || type == undefined){
                 alert("กรุณากรอกข้อมูลให้ครบ");
+                if (user == "") {
+                    $("#username").css("border", "1px solid red");
+                }
+                else {
+                    $("#username").css("border", "1px solid #ccc");
+                }
+                if (pass == "") {
+                    $("#password").css("border", "1px solid red");
+                }
+                else {
+                    $("#password").css("border", "1px solid #ccc");
+                }
+                if (name == "") {
+                    $("#name").css("border", "1px solid red");
+                }
+                else {
+                    $("#name").css("border", "1px solid #ccc");
+                }
+                if (surname == "") {
+                    $("#surname").css("border", "1px solid red");
+                }
+                else {
+                    $("#surname").css("border", "1px solid #ccc");
+                }
+                if (tel == "" || tel.length < 9) {
+                    $("#tel").css("border", "1px solid red");
+                }
+                else {
+                    $("#tel").css("border", "1px solid #ccc");
+                }
+                if (email == "") {
+                    $("#email").css("border", "1px solid red");
+                }
+                else {
+                    $("#email").css("border", "1px solid #ccc");
+                }
+                if (type == undefined) {
+                    $("#pic_chk").css("display","inline");
+                }
+                else {
+                    $("#pic_chk").css("display","none");
+                }
                 return false;
+            }
+        });
+        $("#tel").keydown(function (e) {
+            var tel_chk = e['key'].charCodeAt(0);
+            console.log(tel_chk);
+            if(tel_chk != 66){
+                if(tel_chk < 48 || tel_chk > 57){
+                    if(tel_chk < 84 || tel_chk > 84) {
+                        alert("กรอกเฉพาะตัวเลขนะจ๊");
+                        return false;
+                    }
+                }
+            }
+        });
+        $("#name").keydown(function (e) {
+            var name_chk = e['key'].charCodeAt(0);
+            console.log(name_chk);
+            if(name_chk != 66) {
+                if (name_chk < 65 || name_chk > 90) {
+                    if(name_chk < 97 || name_chk > 122) {
+                        if(name_chk < 161 || name_chk > 206) {
+                            if(name_chk < 3585 || name_chk > 3630) {
+                                if(name_chk < 3632 || name_chk > 3641) {
+                                    if(name_chk < 3648 || name_chk > 3661) {
+                                        alert("ห้าม!!กรอกตัวอักษรพิเศษหรือตัวเลขสิ");
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        $("#surname").keydown(function (e) {
+            var sname_chk = e['key'].charCodeAt(0);
+            console.log(sname_chk);
+            if(sname_chk != 66) {
+                if (sname_chk < 65 || sname_chk > 90) {
+                    if(sname_chk < 97 || sname_chk > 122) {
+                        if(sname_chk < 161 || sname_chk > 206) {
+                            if(sname_chk < 3585 || sname_chk > 3630) {
+                                if(sname_chk < 3632 || sname_chk > 3641) {
+                                    if(sname_chk < 3648 || sname_chk > 3661) {
+                                        alert("ห้าม!!กรอกตัวอักษรพิเศษหรือตัวเลขสิ");
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        $("#username").keydown(function (e) {
+            var id_chk = e['key'].charCodeAt(0);
+            console.log(id_chk);
+            if(id_chk < 48 || id_chk > 57){
+                if(id_chk < 65 || id_chk > 90){
+                    if(id_chk < 97 || id_chk > 122){
+                        alert("กรอกได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้นครับ");
+                        return false;
+                    }
+                }
+            }
+        });
+        $("#password").keydown(function (e) {
+            var pass_chk = e['key'].charCodeAt(0);
+            console.log(pass_chk);
+            if(pass_chk < 48 || pass_chk > 57){
+                if(pass_chk < 65 || pass_chk > 90){
+                    if(pass_chk < 97 || pass_chk > 122){
+                        alert("กรอกได้เฉพาะตัวอักษรภาษาอังกฤษและตัวเลขเท่านั้นครับ");
+                        return false;
+                    }
+                }
             }
         });
     });
