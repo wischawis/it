@@ -32,6 +32,7 @@ include ("header.php");
         $("#cancel").click(function () {
             $("input").attr("disabled","disabled");
             $("#edit_profile").removeAttr("disabled");
+            $("#search").removeAttr("disabled");
             $("#cancel,#edit").attr("type","hidden");
         });
     });
