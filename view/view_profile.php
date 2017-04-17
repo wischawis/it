@@ -18,6 +18,10 @@ include ("header.php");
     .mm{
         margin: 20px 20px 20px 20px;
     }
+    .col-md-4.col-sm-4.col-xs-12{
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
 </style>
 <script>
     $(document).ready(function () {
@@ -28,6 +32,7 @@ include ("header.php");
         $("#cancel").click(function () {
             $("input").attr("disabled","disabled");
             $("#edit_profile").removeAttr("disabled");
+            $("#search").removeAttr("disabled");
             $("#cancel,#edit").attr("type","hidden");
         });
     });
@@ -112,8 +117,9 @@ include ("header.php");
                         $picture = getPicturePro( $userlogin->getId());
 
                         for($imgnum=0;$imgnum<count($picture);$imgnum++){
+                            $userlogin->getIdImg() == $picture[$imgnum]['id_img']? $ch='checked' : $ch="";
                            echo " <div class=\"col-md-4 col-sm-4 col-xs-12\">
-                                <input type=\"radio\" style=\"float: left;\" name=\"img\" value='".$picture[$imgnum]['id_img']."' disabled/><img width='100px' height='100px' src='".$picture[$imgnum]['path_img']."'>
+                                <input type=\"radio\" style=\"float: left;\" name=\"img\" value='".$picture[$imgnum]['id_img']."' ".$ch." disabled/><img width='100px' height='100px' src='".$picture[$imgnum]['path_img']."'>
                             </div>";
                         }
                     ?>

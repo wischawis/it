@@ -12,6 +12,7 @@ include ("header.php");
 <script>
 
 	$(document).ready(function(){
+	    var nub = 0;
 		$(".call_back").click(function(){
 			var idcomment = $(this).parent().parent().parent().data("idcomment");
 			var idsubject = $(this).parent().parent().parent().data("idsubject");
@@ -24,18 +25,19 @@ include ("header.php");
 			com = com + "<img class='avatar' src='"+p_img+"' alt='avatar'>";
 			com = com + "</a>";
 			com = com + "<div class='comment-body'>";
-			com = com + "<div class='comment-heading'>";
+			com = com + "<div class='comment-heading' data-nub='"+nub+"'>";
 			com = com + "<h4 class='user' style='color: #365899;'>" + user + "</h4>";
 			com = com + "<input type='hidden' name='idsubject' value='"+idsubject+"'/>";
-			com = com + "<input type='hidden' name='idcomment' value='"+idcomment+"'/>";
-			com = com + "<input type='text' name='txt' class='input'/>";
-			com = com + "<input type='submit' value='โพสต์'/>";
+			com = com + "<input type='hidden' name='idcomment' value='"+idcomment+"' />";
+			com = com + "<input type='text' name='txt' class='input' id='subcom_"+nub+"'/>";
+			com = com + "<input type='submit' value='โพสต์' class='postsub'/>";
 			com = com + "</div>";
 			com = com + "</div>";
 			com = com + "</li> ";
 			com = com + "</ul>";
 			com = com + "</div></form>";
 			$(this).parent().parent().append(com);
+			nub++;
 		});
 		$(".delete").click(function(){
 			var idcomment = $(this).parent().parent().parent().data("idcomment");
@@ -58,8 +60,26 @@ include ("header.php");
 						location.reload();
 				});
 			});
-			
 		});
+
+		$("#mainpost").click(function () {
+           var com = $("#maincomment").val();
+           if(com == ""){
+               $("#maincomment").css("border","1px solid red");
+               $('#maincomment').popover('show');
+               return false;
+           }
+        });
+        $(document).on("click", ".postsub", function () {
+            var com = $(this).parent().data("nub");
+            var v_com = $("#subcom_"+com).val();
+            if(v_com == ""){
+                $("#subcom_"+com).css("border","1px solid red");
+                $("#subcom_"+com).popover({content: "โพสต์นี้ว่างเปล่า", placement: "bottom"});
+                $("#subcom_"+com).popover('show');
+                return false;
+            }
+        });
 	});
 	
 </script>
@@ -91,6 +111,15 @@ include ("header.php");
 	.input-group{
 		width:100%;
 	}
+    .popover {
+        border: 1px solid red;
+    }
+    .popover-content {
+        color: red;
+    }
+    .popover.fade div.arrow{
+        border-bottom-color: red;
+    }
 </style>
 
         <div class="panel panel-white post panel-shadow">
@@ -116,8 +145,8 @@ include ("header.php");
                     <div class="input-group">
                         <form action="../model/insert_0.php" method="post">
                             <input type="hidden" name="idsubject" value="<?= $resultArray[0]['id_subject'] ?>"/>
-                            <input class="form-control" placeholder="Add a comment" type="text" name="txt2">
-                            <input type="submit" value="โพสต์" style="float: right"/>
+                            <input class="form-control" id="maincomment"  data-toggle="popover" data-placement="bottom" data-content="โพสต์นี้ว่างเปล่า" placeholder="Add a comment" type="text" name="txt2">
+                            <input type="submit" id="mainpost" value="โพสต์" style="float: right"/>
                         </form>
                     </div>
                     <?php
