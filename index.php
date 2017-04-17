@@ -416,14 +416,18 @@
                         </tr>
                         <tr>
                             <td><label for="tel" style="color: yellow">Tel. No.</label></td>
-                            <td><input type="text" class="form-control" name="tel" id="tel" maxlength="10"/><br/></td>
+                            <td><input type="text" class="form-control" name="tel" id="tel" minlength="9" maxlength="10"/><br/></td>
                         </tr>
                         <tr>
                             <td><label for="email" style="color: orange">E-mail</label></td>
-                            <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="50"/><br/></td>
+                            <td><input type="text" class="form-control" name="email" id="email" maxlength="50"/><br/></td>
                         </tr>
                         <tr>
-                            <td><label for="picture" style="color: orange">Picture</label></td>
+                            <td></td>
+                            <td style="text-align: left"><label id="pic_chk" style="display: none; color: red;">ได้โปรดเลือกรูปด้วยเถอะนะขอรับ</label><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="picture" style="color: red">Picture</label></td>
                             <td><div class="col-md-4 col-sm-4 col-xs-12">
                                     <input type="radio" style="float: left" name="img" value="1"/><img src="images/user_1.jpg"/>
                                 </div>
@@ -500,7 +504,7 @@
                 else {
                     $("#surname").css("border", "1px solid #ccc");
                 }
-                if (tel == "" || tel.length < 9) {
+                if (tel == "") {
                     $("#tel").css("border", "1px solid red");
                 }
                 else {
