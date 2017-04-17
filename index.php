@@ -423,7 +423,7 @@
                             <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="50"/><br/></td>
                         </tr>
                         <tr>
-                            <td><label for="email" style="color: orange">Picture</label></td>
+                            <td><label for="picture" style="color: orange">Picture</label></td>
                             <td><div class="col-md-4 col-sm-4 col-xs-12">
                                     <input type="radio" style="float: left" name="img" value="1"/><img src="images/user_1.jpg"/>
                                 </div>
