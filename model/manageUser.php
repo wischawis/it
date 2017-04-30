@@ -48,17 +48,16 @@ if(isset($_POST['edit'])){
     }
     echo "<script>window.location = '../controller/edituser.php';</script>";
 }
-if(isset($_GET['iduser'])){
-    $iduser = $_GET['iduser'];
+if(isset($_POST['iduser'])){
+    $iduser = $_POST['iduser'];
     $sql = "DELETE FROM member WHERE id_member='$iduser'";
     $res = $conn->exec($sql);
     if($res){
-        echo "<script>alert('SUCCESS')</script>";
+        echo true;
     }
     else{
-        echo "<script>alert('FAIL')</script>";
+        echo false;
     }
-    echo "<script>window.location = '../controller/edituser.php';</script>";
 }
 ?>
 

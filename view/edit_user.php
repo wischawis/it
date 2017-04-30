@@ -41,7 +41,22 @@ include ("header.php");
         });
         $(document).on("click", ".delete_col", function () {
             var id = $(this).data('id');
-            window.location = '../model/manageUser.php?iduser='+id;
+            //window.location = '../model/manageUser.php?iduser='+id;
+            $.ajax({
+                url: "../model/manageUser.php" ,
+                type: "POST",
+                data: {iduser:id},
+                dataType: "json"
+            })
+            .success(function(result) {
+                if(result){
+                    alert("SUCCESS");
+                    location.reload();
+                }
+                else {
+                    alert("FAIL");
+                }
+            });
         });
 
     });
