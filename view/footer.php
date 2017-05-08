@@ -14,6 +14,9 @@
         margin-top: 0;
         display: inline;
     }
+    .footer_top{
+        padding:10px 20px 10px;
+    }
 </style>
 <?php
 $lastCom = getLastComment();
@@ -52,28 +55,12 @@ $lastCom = getLastComment();
 <footer id="footer">
     <div class="footer_top">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="footer_widget wow fadeInLeftBig">
-                    <h2>Social Contact</h2>
-
-                    <ul class="social_nav">
-                        <li class="facebook"><a href="https://www.facebook.com" target="_blank"></a></li>
-                        <li class="twitter"><a href="https://www.twitter.com" target="_blank"></a></li>
-                        <li class="pinterest"><a href="https://www.pinterest.com/" target="_blank"></a></li>
-                        <li class="googleplus"><a href="https://plus.google.com/" target="_blank"></a></li>
-                        <li class="youtube"><a href="https://www.youtube.com/" target="_blank"></a></li>
-                        <li class="mail"><a href="https://mail.google.com/" target="_blank"></a></li>
-                    </ul>
-
-                </div>
-
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="footer_widget wow fadeInRightBig">
                     <h2>Contact</h2>
                     <address>
-                        ภาควิชาวิศวกรรมคอมพิวเตอร์ อาคาร 8 คณะวิศวกรรมศาสตร์ กำแพงแสน มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140 </br>
-                        โทรศัพท์: 034-281074 ต่อ 7523 หรือ 099-6954159 | โทรสาร: 099-6954159  </br>
+                        ภาควิชาวิศวกรรมคอมพิวเตอร์ อาคาร 8 คณะวิศวกรรมศาสตร์ กำแพงแสน มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140 <br>
+                        โทรศัพท์: 034-281074 ต่อ 7523 หรือ 099-6954159 | โทรสาร: 099-6954159
                         ติดต่อผู้ดูแลระบบ : wis-chawis@hotmail.com
                     </address>
                 </div>
@@ -81,8 +68,19 @@ $lastCom = getLastComment();
         </div>
     </div>
     <div class="footer_bottom">
-        <p class="copyright">Copyright &copy; 2017 <a href="../index.php">Computer Engineering KPS</a></p>
-        <p class="developer">Developed By Wis Chawis</p>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <ul class="social_nav">
+                <li class="facebook"><a href="https://www.facebook.com" target="_blank"></a></li>
+                <li class="twitter"><a href="https://www.twitter.com" target="_blank"></a></li>
+                <li class="pinterest"><a href="https://www.pinterest.com/login/" target="_blank"></a></li>
+                <li class="googleplus"><a href="https://plus.google.com/" target="_blank"></a></li>
+                <li class="youtube"><a href="https://www.youtube.com/" target="_blank"></a></li>
+                <li class="mail"><a href="https://mail.google.com/" target="_blank"></a></li>
+            </ul>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: right">
+            <p>Copyright &copy; 2017 <a href="http://cpe.eng.kps.ku.ac.th" target="_blank" style="color: mediumpurple;">Computer Engineering KPS</a></p>
+        </div>
     </div>
 </footer>
 </div>

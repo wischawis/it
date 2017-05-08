@@ -1,5 +1,6 @@
 
 <script src="../lib/sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../lib/sweetalert-master/dist/sweetalert.css">
 <link rel="stylesheet" type="text/css" href="../css/style_com.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -30,7 +31,7 @@ include ("header.php");
 			com = com + "<input type='hidden' name='idsubject' value='"+idsubject+"'/>";
 			com = com + "<input type='hidden' name='idcomment' value='"+idcomment+"' />";
 			com = com + "<input type='text' name='txt' class='input' id='subcom_"+nub+"'/>";
-			com = com + "<input type='submit' value='โพสต์' class='postsub'/>";
+			com = com + "<input type='submit' value='โพสต์' class='postsub btn-primary'/>";
 			com = com + "</div>";
 			com = com + "</div>";
 			com = com + "</li> ";
@@ -145,8 +146,8 @@ include ("header.php");
                     <div class="input-group">
                         <form action="../model/insert_0.php" method="post">
                             <input type="hidden" name="idsubject" value="<?= $resultArray[0]['id_subject'] ?>"/>
-                            <input class="form-control" id="maincomment"  data-toggle="popover" data-placement="bottom" data-content="โพสต์นี้ว่างเปล่า" placeholder="Add a comment" type="text" name="txt2">
-                            <input type="submit" id="mainpost" value="โพสต์" style="float: right"/>
+                            <input class="form-control" id="maincomment"  data-toggle="popover" data-placement="bottom" data-content="โพสต์นี้ว่างเปล่า" placeholder="Add a comment" type="text" name="txt2" style="width: 80%">
+                            <input type="submit" id="mainpost" value="โพสต์" class="btn btn-primary" />
                         </form>
                     </div>
                     <?php

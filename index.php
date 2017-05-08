@@ -44,6 +44,9 @@
         label{
             margin-right: 20px;
         }
+        .footer_top{
+            padding:10px 20px 10px;
+        }
     </style>
     <?php
     include ("config.inc.php");
@@ -158,6 +161,14 @@
                 <ul class="nav navbar-nav navbar-left">
                     <li class="active"><a href="index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
                     <li><a href="view/about.php">เกี่ยวกับเรา</a></li>
+                    <li class="dropdown"><a href="#">หน่วยงานต่างๆ</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://eng.kps.ku.ac.th/v3/" target="_blank">คณะวิศวกรรมศาสตร์ กพส.</a></li>
+                            <li><a href="http://www.lib.kps.ku.ac.th/g4/" target="_blank">ห้องสมุด มก.กพส.</a></li>
+                            <li><a href="http://www.lib.ku.ac.th/" target="_blank">ห้องสมุด มก.บางเขน</a></li>
+                            <li><a href="http://esdpsd.psd.kps.ku.ac.th/" target="_blank">กองบริหารวิชาการและนิสิต</a></li>
+                        </ul>
+                    </li>
                     <li>
                         <form class="navbar-form navbar-left" method="post" action="#">
                             <div class="input-group">
@@ -258,7 +269,11 @@
                         <div class="sub-subject">
                             <p class="detail"><?=$resultArray[$i]['description']?></p>
                         </div>
-                        <div class="more"><a href="controller/detail.php?idsub=<?=$resultArray[$i]['id_subject']?>" >more</a></div>
+                        <div class="more">
+                            <form action="controller/detail.php?idsub=<?=$resultArray[$i]['id_subject']?>" method="post">
+                                <input type="submit" name="more" id="more" value="More" class="btn btn-success">
+                            </form>
+                        </div>
                     </div>
                     <?php
                 }
@@ -318,28 +333,12 @@
     <footer id="footer">
         <div class="footer_top">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="footer_widget wow fadeInLeftBig">
-                        <h2>Social Contact</h2>
-
-                        <ul class="social_nav">
-                            <li class="facebook"><a href="https://www.facebook.com" target="_blank"></a></li>
-                            <li class="twitter"><a href="https://www.twitter.com" target="_blank"></a></li>
-                            <li class="pinterest"><a href="https://www.pinterest.com/login/" target="_blank"></a></li>
-                            <li class="googleplus"><a href="https://plus.google.com/" target="_blank"></a></li>
-                            <li class="youtube"><a href="https://www.youtube.com/" target="_blank"></a></li>
-                            <li class="mail"><a href="https://mail.google.com/" target="_blank"></a></li>
-                        </ul>
-
-                    </div>
-
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="footer_widget wow fadeInRightBig">
                         <h2>Contact</h2>
                         <address>
-                            ภาควิชาวิศวกรรมคอมพิวเตอร์ อาคาร 8 คณะวิศวกรรมศาสตร์ กำแพงแสน มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140 </br>
-                            โทรศัพท์: 034-281074 ต่อ 7523 หรือ 099-6954159 | โทรสาร: 099-6954159  </br>
+                            ภาควิชาวิศวกรรมคอมพิวเตอร์ อาคาร 8 คณะวิศวกรรมศาสตร์ กำแพงแสน มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตกำแพงแสน อ.กำแพงแสน จ.นครปฐม 73140 <br>
+                            โทรศัพท์: 034-281074 ต่อ 7523 หรือ 099-6954159 | โทรสาร: 099-6954159
                             ติดต่อผู้ดูแลระบบ : wis-chawis@hotmail.com
                         </address>
                     </div>
@@ -347,8 +346,19 @@
             </div>
         </div>
         <div class="footer_bottom">
-            <p class="copyright">Copyright &copy; 2017 <a href="../index.php">Computer Engineering KPS</a></p>
-            <p class="developer">Developed By Wis Chawis</p>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+            <ul class="social_nav">
+                <li class="facebook"><a href="https://www.facebook.com" target="_blank"></a></li>
+                <li class="twitter"><a href="https://www.twitter.com" target="_blank"></a></li>
+                <li class="pinterest"><a href="https://www.pinterest.com/login/" target="_blank"></a></li>
+                <li class="googleplus"><a href="https://plus.google.com/" target="_blank"></a></li>
+                <li class="youtube"><a href="https://www.youtube.com/" target="_blank"></a></li>
+                <li class="mail"><a href="https://mail.google.com/" target="_blank"></a></li>
+            </ul>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: right">
+            <p>Copyright &copy; 2017 <a href="http://cpe.eng.kps.ku.ac.th" target="_blank" style="color: mediumpurple;">Computer Engineering KPS</a></p>
+            </div>
         </div>
     </footer>
 </div>
