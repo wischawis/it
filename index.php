@@ -47,10 +47,62 @@
         .footer_top{
             padding:10px 20px 10px;
         }
+        .time_com{
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 0;
+        }
     </style>
     <?php
     include ("config.inc.php");
     include ("class/Member.class.php");
+    function minDiff($strTime1,$strTime2)
+    {
+        if($strTime1>=$strTime2){
+            return $strTime1-$strTime2;
+        }
+        else{
+            return (60-$strTime2)+$strTime1;
+        }
+    }
+    function TimeDiff($strTime1,$strTime2)
+    {
+        return (strtotime($strTime2) - strtotime($strTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+    }
+    function DateTimeDiff($strDateTime1,$strDateTime2)
+    {
+        return (strtotime($strDateTime2) - strtotime($strDateTime1))/  ( 60 * 60 ); // 1 Hour =  60*60
+    }
+    function echo_date_time($com){
+        $dt = DateTimeDiff($com,date("Y-m-d H:i:s",strtotime('+5 hours')))/24;
+        if($dt<1){
+            $dt = TimeDiff(date("H:i",strtotime($com)),date("H:i",strtotime('+5 hours')));
+            if($dt<1){
+                $dt = minDiff(date("i"),date("i",strtotime($com)));
+                if($dt<1){
+                    return "เมื่อสักครู่";
+                }
+                else{
+                    $dt = floor($dt);
+                    return $dt." นาที";
+                }
+            }
+            else{
+                $dt = floor($dt);
+                return $dt." ชั่วโมง";
+            }
+        }
+        else{
+            if($dt<30){
+                $dt = floor($dt);
+                return $dt." วัน";
+            }
+            else{
+                $dt = floor($dt/30);
+                return $dt." เดือน";
+            }
+        }
+    }
     function getLastComment(){
         global $conn;
         $sql = "SELECT * FROM img INNER JOIN (member INNER JOIN (comment INNER JOIN subject ON comment.id_subject = subject.id_subject) ON member.id_member=comment.id_user) ON img.id_img=member.id_img  ORDER BY date_time DESC LIMIT 5";
@@ -305,6 +357,7 @@
                                                 echo "<b>".$lastCom[$last]['name']." ".$lastCom[$last]['surname']."</b> แสดงความคิดเห็นในวิชา ".$lastCom[$last]['name_th'];
                                                 ?>
                                             </a>
+                                            <?="<h5 class='time_com'>".echo_date_time($lastCom[$last]['date_time'])."</h5>"?>
                                         </div>
                                     </div>
                                 </li>
