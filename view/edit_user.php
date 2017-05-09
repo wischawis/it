@@ -128,11 +128,11 @@ include ("header.php");
                         <div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12">ชื่อผู้ใช้</label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <input type="text" class="form-control" name="username" id="username"/>
+                                <input type="text" class="form-control" name="username" id="username" readonly/>
                             </div>
                             <label class="control-label col-md-2 col-sm-2 col-xs-12">รหัสผ่าน</label>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <input type="text" class="form-control" name="password" id="pass"/>
+                                <input type="password" class="form-control" name="password" id="pass"/>
                             </div>
                         </div>
                     </div>

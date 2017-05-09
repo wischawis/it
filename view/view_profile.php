@@ -59,7 +59,7 @@ include ("header.php");
             <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">รหัสผ่าน</label>
                 <div class="col-md-8 col-sm-8 col-xs-12">
-                    <input type="text" class="form-control" name="pass" id="pass" value="<?=$userlogin->getPassword()?>" disabled/>
+                    <input type="password" class="form-control" name="pass" id="pass" value="<?=$userlogin->getPassword()?>" disabled/>
                 </div>
             </div>
         </div>
@@ -115,13 +115,15 @@ include ("header.php");
                     </div>
                     <?php
                         $picture = getPicturePro( $userlogin->getId());
-
-                        for($imgnum=0;$imgnum<count($picture);$imgnum++){
-                            $userlogin->getIdImg() == $picture[$imgnum]['id_img']? $ch='checked' : $ch="";
-                           echo " <div class=\"col-md-4 col-sm-4 col-xs-12\">
-                                <input type=\"radio\" style=\"float: left;\" name=\"img\" value='".$picture[$imgnum]['id_img']."' ".$ch." disabled/><img width='100px' height='100px' src='".$picture[$imgnum]['path_img']."'>
-                            </div>";
+                        for ($imgnum = 0; $imgnum < count($picture); $imgnum++) {
+                            if($picture[$imgnum]['id_img'] != "1" && $picture[$imgnum]['id_img'] != "2" && $picture[$imgnum]['id_img'] != "3") {
+                                $userlogin->getIdImg() == $picture[$imgnum]['id_img'] ? $ch = 'checked' : $ch = "";
+                                echo " <div class=\"col-md-4 col-sm-4 col-xs-12\">
+                            <input type=\"radio\" style=\"float: left;\" name=\"img\" value='" . $picture[$imgnum]['id_img'] . "' " . $ch . " disabled/><img width='100px' height='100px' src='" . $picture[$imgnum]['path_img'] . "'>
+                        </div>";
+                            }
                         }
+
                     ?>
                 </div>
             </div>

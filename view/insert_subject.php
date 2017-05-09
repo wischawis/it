@@ -35,6 +35,7 @@
         });
         $('#subject_code').change(function () {
             var subcode = $('#subject_code').val();
+            console.log(subcode);
             $.ajax({
                 url: "../model/findSubject.php",
                 type: "POST",

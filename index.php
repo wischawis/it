@@ -420,7 +420,7 @@
                         </tr>
                         <tr>
                             <td><label for="password" style="color: navy">Password</label></td>
-                            <td><input type="text" class="form-control" name="password" id="password" maxlength="20"/><br/></td>
+                            <td><input type="password" class="form-control" name="password" id="password" maxlength="20"/><br/></td>
                         </tr>
                         <tr>
                             <td><label for="name" style="color: deepskyblue">Name</label></td>
@@ -467,6 +467,50 @@
 </div>
 <script>
     $(document).ready(function () {
+        var check_title = false;
+        $('#username').keyup(function () {
+            var title = $('#username').val();
+            if(title != "") {
+                $.ajax({
+                    url: "model/findUsername.php",
+                    type: "POST",
+                    data: {user: title}
+                })
+                .success(function (result) {
+                    if (result == "true") {
+                        $('#username').css("border", "1px solid green");
+                        check_title = true;
+                    }
+                    else {
+                        $('#username').css("border", "1px solid red");
+                        check_title = false;
+                    }
+                });
+            }
+            if(title == "") {
+                $('#title').css("border", "1px solid #ccc");
+            }
+        });
+        $('#username').change(function () {
+            var title1 = $('#username').val();
+            if(title1 != "") {
+                $.ajax({
+                    url: "model/findUsername.php",
+                    type: "POST",
+                    data: {user: title1}
+                })
+                    .success(function (result) {
+                        if (result == "true") {
+                            $('#username').css("border", "1px solid green");
+                            check_title = true;
+                        }
+                        else {
+                            $('#username').css("border", "1px solid red");
+                            check_title = false;
+                        }
+                    });
+            }
+        });
         $("#login").click(function () {
             var user = $("#user").val();
             var pass = $("#pass").val();
@@ -539,6 +583,10 @@
                     $("#pic_chk").css("display","none");
                 }
                 return false;
+            }
+            if(!check_title){
+                alert("ชื่อผู้ใช้ซ้ำ");
+               return false;
             }
         });
         $("#tel").keydown(function (e) {

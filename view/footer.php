@@ -129,7 +129,7 @@ $lastCom = getLastComment();
                         </tr>
                         <tr>
                             <td><label for="password" style="color: navy">Password</label></td>
-                            <td><input type="text" class="form-control" name="password" id="password" maxlength="20"/><br/></td>
+                            <td><input type="password" class="form-control" name="password" id="password" maxlength="20"/><br/></td>
                         </tr>
                         <tr>
                             <td><label for="name" style="color: deepskyblue">Name</label></td>
@@ -145,7 +145,19 @@ $lastCom = getLastComment();
                         </tr>
                         <tr>
                             <td><label for="email" style="color: orange">E-mail</label></td>
-                            <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="20"/><br/></td>
+                            <td><input type="text" class="form-control" name="email" id="email" minlength="9" maxlength="50"/><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="picture" style="color: red">Picture</label></td>
+                            <td><div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="radio" style="float: left" name="img" value="1"/><img src="../images/user_1.jpg"/>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="radio" style="float: left" name="img" value="2"/><img src="../images/user_2.jpg"/>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <input type="radio" style="float: left" name="img" value="3"/><img src="../images/user_3.jpg"/>
+                                </div></td>
                         </tr>
                     </table>
                     <br/>
@@ -158,6 +170,112 @@ $lastCom = getLastComment();
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function () {
+        var check_title = false;
+        $('#username').keyup(function () {
+            var title = $('#username').val();
+            if(title != "") {
+                $.ajax({
+                    url: "../model/findUsername.php",
+                    type: "POST",
+                    data: {user: title}
+                })
+                    .success(function (result) {
+                        if (result == "true") {
+                            $('#username').css("border", "1px solid green");
+                            check_title = true;
+                        }
+                        else {
+                            $('#username').css("border", "1px solid red");
+                            check_title = false;
+                        }
+                    });
+            }
+            if(title == "") {
+                $('#title').css("border", "1px solid #ccc");
+            }
+        });
+        $('#username').change(function () {
+            var title1 = $('#username').val();
+            if(title1 != "") {
+                $.ajax({
+                    url: "../model/findUsername.php",
+                    type: "POST",
+                    data: {user: title1}
+                })
+                    .success(function (result) {
+                        if (result == "true") {
+                            $('#username').css("border", "1px solid green");
+                            check_title = true;
+                        }
+                        else {
+                            $('#username').css("border", "1px solid red");
+                            check_title = false;
+                        }
+                    });
+            }
+        });
+        $("#regis").click(function () {
+            var user = $("#username").val();
+            var pass = $("#password").val();
+            var name = $("#name").val();
+            var surname = $("#surname").val();
+            var tel = $("#tel").val();
+            var email = $("#email").val();
+            var type = $("input[name=img]:checked").val();
+            if(user == "" || pass == "" || name == "" || surname == "" || tel == "" || email == "" || type == undefined){
+                alert("กรุณากรอกข้อมูลให้ครบ");
+                if (user == "") {
+                    $("#username").css("border", "1px solid red");
+                }
+                else {
+                    $("#username").css("border", "1px solid #ccc");
+                }
+                if (pass == "") {
+                    $("#password").css("border", "1px solid red");
+                }
+                else {
+                    $("#password").css("border", "1px solid #ccc");
+                }
+                if (name == "") {
+                    $("#name").css("border", "1px solid red");
+                }
+                else {
+                    $("#name").css("border", "1px solid #ccc");
+                }
+                if (surname == "") {
+                    $("#surname").css("border", "1px solid red");
+                }
+                else {
+                    $("#surname").css("border", "1px solid #ccc");
+                }
+                if (tel == "") {
+                    $("#tel").css("border", "1px solid red");
+                }
+                else {
+                    $("#tel").css("border", "1px solid #ccc");
+                }
+                if (email == "") {
+                    $("#email").css("border", "1px solid red");
+                }
+                else {
+                    $("#email").css("border", "1px solid #ccc");
+                }
+                if (type == undefined) {
+                    $("#pic_chk").css("display","inline");
+                }
+                else {
+                    $("#pic_chk").css("display","none");
+                }
+                return false;
+            }
+            if(!check_title){
+                alert("ชื่อผู้ใช้ซ้ำ");
+                return false;
+            }
+        });
+    });
+</script>
 </body>
 </html>
