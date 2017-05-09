@@ -48,7 +48,11 @@ for ($i=0;$i<count($resultArray);$i++) {
         <div class="sub-subject">
             <p class="detail"><?=$resultArray[$i]['description']?></p>
         </div>
-        <div class="more"><a href="../controller/detail.php?idsub=<?=$resultArray[$i]['id_subject']?>" >more</a></div>
+        <div class="more">
+            <form action="../controller/detail.php?idsub=<?=$resultArray[$i]['id_subject']?>" method="post" style="margin-bottom: 0">
+                <input type="submit" name="more" id="more" value="More" class="btn btn-success">
+            </form>
+        </div>
     </div>
 
     <?php
