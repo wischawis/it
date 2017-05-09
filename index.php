@@ -213,7 +213,7 @@
                 <ul class="nav navbar-nav navbar-left">
                     <li class="active"><a href="index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
                     <li><a href="view/about.php">เกี่ยวกับเรา</a></li>
-                    <li class="dropdown"><a href="#">หน่วยงานต่างๆ</a>
+                    <li class="dropdown"><a href="#">หน่วยงานภายใน</a>
                         <ul class="dropdown-menu">
                             <li><a href="http://eng.kps.ku.ac.th/v3/" target="_blank">คณะวิศวกรรมศาสตร์ กพส.</a></li>
                             <li><a href="http://www.lib.kps.ku.ac.th/g4/" target="_blank">ห้องสมุด มก.กพส.</a></li>
