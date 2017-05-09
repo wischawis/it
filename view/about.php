@@ -109,6 +109,14 @@
                     <li class="active"><a href="../index.php"><span class="fa fa-home desktop-home"></span><span class="mobile-show">Home</span></a></li>
                     <li><a href="#"></a></li>
                     <li><a href="about.php">เกี่ยวกับเรา</a></li>
+                    <li class="dropdown"><a href="#">หน่วยงานภายใน</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://eng.kps.ku.ac.th/v3/" target="_blank">คณะวิศวกรรมศาสตร์ กพส.</a></li>
+                            <li><a href="http://www.lib.kps.ku.ac.th/g4/" target="_blank">ห้องสมุด มก.กพส.</a></li>
+                            <li><a href="http://www.lib.ku.ac.th/" target="_blank">ห้องสมุด มก.บางเขน</a></li>
+                            <li><a href="http://esdpsd.psd.kps.ku.ac.th/" target="_blank">กองบริหารวิชาการและนิสิต</a></li>
+                        </ul>
+                    </li>
                     <li>
                         <form class="navbar-form navbar-left" action="../index.php" method="post">
                             <div class="input-group">
